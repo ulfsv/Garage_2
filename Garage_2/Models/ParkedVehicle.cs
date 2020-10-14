@@ -22,7 +22,7 @@ namespace Garage_2.Models {
         public int WheelsNumber { get; set; }
         [Required]
         public DateTime ParkedDateTime { get; set; }
-        [Required]
+       
       
     }
 
