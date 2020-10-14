@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Garage_2/Migrations/20201014135038_Init2.cs
+/Garage_2/Migrations/20201014135038_Init2.Designer.cs
