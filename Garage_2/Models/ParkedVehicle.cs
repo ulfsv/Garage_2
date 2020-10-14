@@ -9,8 +9,11 @@ namespace Garage_2.Models {
         [Required]
         public int Id { get; set; }
         [Required]
+        [Display( Name = "Type")]
         public VehicleTypeEnum VehicleType { get; set; }
         [Required]
+        [Display(Name = "Register No")]
+
         public string RegisterNumber { get; set; }
         [Required]
         public string Color { get; set; }
@@ -19,8 +22,12 @@ namespace Garage_2.Models {
         [Required]
         public string Brand { get; set; }
         [Required]
+        [Display(Name = "Wheels No")]
+
         public int WheelsNumber { get; set; }
         [Required]
+        [Display(Name = "Parked time")]
+
         public DateTime ParkedDateTime { get; set; }
        
       
