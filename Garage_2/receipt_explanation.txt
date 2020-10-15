@@ -91,5 +91,10 @@ Sedan så behövdes det endast en liten ändring i Receipt.cshtml och sedan funkade
 Observera stort M på Model "<p>Parkerad klockan @Model.ParkingTime</p>"
 vilket jag blev överaskad av.
 
+Sedan så fixade jag till lite kosmetiska ändringar för att jag tyckte att det såg illa ut.
+T.ex "kr" efter priceperhour, "Parked at 2020-10-14 13:48:38 o'clock", "Fetched at 2020-10-15 23:27:02 o'clock" m.m.
+
+Jag är piggare på kvällen än på morgonen :)
+
 Det är inte vackert just nu, men det funkar. Det kan ni se om ni går in på:
 https://localhost:NNNNN/ParkedVehicles/Receipt/1

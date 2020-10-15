@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Garage_2.Models.ReceiptViewModel {
     public class Receipt {
-        [Display(Name = "Price per hour")]
+        [Display(Name = "Price per hour:")]
         [DataType(DataType.Currency)]
         public int PricePerHour { get; set; }
 
-        [Display(Name = "Registration number")]
+        [Display(Name = "Registration number:")]
         public string RegNr { get; set; }
 
         [Display(Name = "Vehicle parked at time")]
