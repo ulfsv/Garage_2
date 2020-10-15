@@ -62,7 +62,7 @@ namespace Garage_2.Controllers
         public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle)
         {
            
-            bool IsProductRegNumberExist = db.ParkedVehicle.Any
+            bool IsProductRegNumberExist = db.ParkedVehicle.Any  // logic for reg nr
             (x => x.RegisterNumber == parkedVehicle.RegisterNumber && x.Id != parkedVehicle.Id);
             if (IsProductRegNumberExist == true)
             {
