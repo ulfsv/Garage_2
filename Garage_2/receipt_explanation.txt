@@ -1,0 +1,95 @@
+Jag satt med detta en stund igår tills jag gav upp.
+
+Jag ringde då en kompis som kan det här och han förklarade att det största problemet var att vi försökte visa något från databasen fastän vi inte hämtade något från databasen ;)
+
+Vi skapade sen en funktion i ParkedVehiclesController:
+
+public async Task<IActionResult> Receipt(int? id)
+        {
+            Receipt receipt = null;
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var parkedVehicle = await db.ParkedVehicle
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (parkedVehicle == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                receipt = new Receipt();
+                receipt.ParkingTime = parkedVehicle.ParkedDateTime;
+                receipt.RegNr = parkedVehicle.RegisterNumber;
+                receipt.PricePerHour = 100; // TODO Do somewhere else
+            }
+
+            return View(receipt);
+        }
+
+Min kompis sade sedan att det inte är ett hett tips att ändra endpoints i Startup, så jag ändrade den filen tillbaks till scratch:
+
+ /*
+ app.UseEndpoints(endpoints ={ 
+	endpoints.MapControllerRoute(
+        	name: "default",
+                pattern: "{controller=ParkedVehicles}/{action=Receipt}/{id?}"); 
+            });
+            */
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+Sedan så behövdes det endast en liten ändring i Receipt.cshtml och sedan funkade det:
+
+@model Garage_2.Models.ReceiptViewModel.Receipt
+
+@{
+    ViewData["Title"] = "Receipt";
+}
+
+<h1>Receipt</h1>
+
+<div>
+    <h4>Receipt</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PricePerHour)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PricePerHour)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RegNr)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RegNr)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ParkingTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ParkingTime)
+        </dd>
+    </dl>
+    <p>Parkerad klockan @Model.ParkingTime</p>
+    <p>Hämtad klockan @DateTime.Now</p>
+</div>
+<div>
+    @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+    <a asp-action="Index">Back to List</a>
+</div>
+
+Observera stort M på Model "<p>Parkerad klockan @Model.ParkingTime</p>"
+vilket jag blev överaskad av.
+
+Det är inte vackert just nu, men det funkar. Det kan ni se om ni går in på:
+https://localhost:NNNNN/ParkedVehicles/Receipt/1

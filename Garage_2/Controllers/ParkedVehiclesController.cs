@@ -10,6 +10,7 @@ using Garage_2.Models;
 using Garage_2.Models.ViewModels;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Windows;
+using Garage_2.Models.ReceiptViewModel;
 
 namespace Garage_2.Controllers
 {
@@ -166,6 +167,32 @@ namespace Garage_2.Controllers
         private bool ParkedVehicleExists(int id)
         {
             return db.ParkedVehicle.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> Receipt(int? id)
+        {
+            Receipt receipt = null;
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var parkedVehicle = await db.ParkedVehicle
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (parkedVehicle == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                receipt = new Receipt();
+                receipt.ParkingTime = parkedVehicle.ParkedDateTime;
+                receipt.RegNr = parkedVehicle.RegisterNumber;
+                receipt.PricePerHour = 100; // TODO Do somewhere else
+            }
+
+            return View(receipt);
         }
     }
 }

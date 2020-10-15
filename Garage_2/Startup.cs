@@ -51,11 +51,20 @@ namespace Garage_2
 
             app.UseAuthorization();
 
+            /*
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=ParkedVehicles}/{action=Index}/{id?}");
+                    pattern: "{controller=ParkedVehicles}/{action=Receipt}/{id?}"); 
+            });
+            */
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
