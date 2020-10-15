@@ -19,8 +19,8 @@ namespace Garage_2.Models {
                 ErrorMessage = "RegNo is already exists")]*/
         [Required]
         [Display(Name = "Register No")]
-        [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
-        [StringLength(6, ErrorMessage = "The value cannot exceed 6 characters. ")]
+        [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Wrong format should be ABC123.")]
+
         public string RegisterNumber { get; set; }
         [Required]
         public string Color { get; set; }
