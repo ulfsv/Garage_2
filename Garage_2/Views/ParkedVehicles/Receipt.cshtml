@@ -7,7 +7,7 @@
 <h1>Receipt</h1>
 
 <div>
-    <h4>Receipt</h4>
+    @*<h4>Receipt</h4>*@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -22,15 +22,15 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegNr)
         </dd>
-        <dt class="col-sm-2">
+        @*<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ParkingTime)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ParkingTime)
-        </dd>
+        </dd>*@
     </dl>
-    <p>Parkerad klockan @Model.ParkingTime</p>
-    <p>Hämtad klockan @DateTime.Now</p>
+    <p>Parked at @Model.ParkingTime o'clock</p>
+    <p>Fetched at @DateTime.Now o'clock</p>
 </div>
 <div>
     @*@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
