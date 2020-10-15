@@ -22,7 +22,7 @@ namespace Garage_2.Data
                 new ParkedVehicle
                 {
                     Id = 1,
-                    VehicleType = VehicleTypeEnum.airplane,
+                    VehicleType = VehicleTypeEnum.Airplane,
                     RegisterNumber = "abc123",
                     Color = "Blue",
                     Model = "A1",
@@ -34,7 +34,7 @@ namespace Garage_2.Data
                 new ParkedVehicle
                 {
                     Id = 2,
-                    VehicleType = VehicleTypeEnum.bus,
+                    VehicleType = VehicleTypeEnum.Bus,
                     RegisterNumber = "dkl785",
                     Color = "Black",
                     Model = "B2",
@@ -46,7 +46,7 @@ namespace Garage_2.Data
                 new ParkedVehicle
                 {
                     Id = 3,
-                    VehicleType = VehicleTypeEnum.boat,
+                    VehicleType = VehicleTypeEnum.Boat,
                     RegisterNumber = "uio159",
                     Color = "Red",
                     Model = "C3",
