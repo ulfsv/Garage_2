@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Garage_2.Data;
 using Garage_2.Models;
 using Garage_2.Models.ViewModels;
+using Microsoft.AspNetCore.Diagnostics;
+using System.Windows;
 
 namespace Garage_2.Controllers
 {
@@ -59,6 +61,19 @@ namespace Garage_2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime,CheckOutDateTime")] ParkedVehicle parkedVehicle)
         {
+           
+            bool IsProductRegNumberExist = db.ParkedVehicle.Any
+            (x => x.RegisterNumber == parkedVehicle.RegisterNumber && x.Id != parkedVehicle.Id);
+            if (IsProductRegNumberExist == true)
+            {
+                ModelState.AddModelError("RegisterNumber", "RegisterNumber already exists");
+            }
+
+
+
+
+
+
             if (ModelState.IsValid)
             {
                 db.Add(parkedVehicle);
