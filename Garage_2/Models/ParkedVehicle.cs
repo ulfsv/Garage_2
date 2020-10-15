@@ -20,7 +20,7 @@ namespace Garage_2.Models {
         [Required]
         [Display(Name = "Register No")]
         [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed.")]
-        
+        [StringLength(6, ErrorMessage = "The value cannot exceed 6 characters. ")]
         public string RegisterNumber { get; set; }
         [Required]
         public string Color { get; set; }
