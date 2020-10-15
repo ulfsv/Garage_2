@@ -21,5 +21,9 @@ namespace Garage_2.Models.ViewModels
         [Display(Name = "Parked time")]
 
         public DateTime ParkedDateTime { get; set; }
+        
+        
+        [Required]
+        public int Id { get; set; }
     }
 }
