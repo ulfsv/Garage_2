@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Diagnostics;
 using System.Windows;
 using Garage_2.Models.ReceiptViewModel;
 
+
+
+
 namespace Garage_2.Controllers
 {
     public class ParkedVehiclesController : Controller
@@ -26,15 +29,9 @@ namespace Garage_2.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index(string inputRegNumber = null)
         {
-            var model = db.ParkedVehicle.Select(p => new ParkedViewModel() 
-            { 
-                Id = p.Id, 
-                VehicleType = p.VehicleType, 
-                RegisterNumber = p.RegisterNumber, 
-                ParkedDateTime = p.ParkedDateTime 
-            });
+            var model = db.ParkedVehicle.Select(p => new ParkedViewModel() { Id = p.Id, VehicleType = p.VehicleType, RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime });
 
-        if (inputRegNumber != null)
+            if (inputRegNumber != null)
         {
             model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
         }
@@ -199,10 +196,31 @@ namespace Garage_2.Controllers
                 receipt = new Receipt();
                 receipt.ParkingTime = parkedVehicle.ParkedDateTime;
                 receipt.RegNr = parkedVehicle.RegisterNumber;
-                receipt.PricePerHour = 100; // TODO Do somewhere else
+                receipt.PricePerHour = 100;// TODO Do somewhere else
+                receipt.TotalTimeParked = CalculateTime(parkedVehicle.ParkedDateTime);
+                receipt.Cost = CalculatePrice(receipt.TotalTimeParked, receipt.PricePerHour);
+                
+
+                //receipt.Cost = CalculatePrice(CalculatePrice(CalculateTime(parkedVehicle.ParkedDateTime),receipt.PricePerHour)) ;
             }
 
             return View(receipt);
         }
+    
+        public int CalculateTime( DateTime TimeParked)
+        {
+            int totalTime = (((DateTime.Now.Day-TimeParked.Day)*24)+ DateTime.Now.Hour - TimeParked.Hour);
+            return totalTime;
+           
+        }
+
+        
+        public int CalculatePrice( int totalTime, int PricePerHour)
+        { 
+            int totalCost =  totalTime * PricePerHour;
+            return totalCost;
+            
+        }
+
     }
 }
