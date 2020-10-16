@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Diagnostics;
 using System.Windows;
 using Garage_2.Models.ReceiptViewModel;
 
+
+
+
 namespace Garage_2.Controllers
 {
     public class ParkedVehiclesController : Controller
@@ -26,15 +29,9 @@ namespace Garage_2.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index(string inputRegNumber = null)
         {
-            var model = db.ParkedVehicle.Select(p => new ParkedViewModel() 
-            { 
-                Id = p.Id, 
-                VehicleType = p.VehicleType, 
-                RegisterNumber = p.RegisterNumber, 
-                ParkedDateTime = p.ParkedDateTime 
-            });
+            var model = db.ParkedVehicle.Select(p => new ParkedViewModel() { Id = p.Id, VehicleType = p.VehicleType, RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime });
 
-        if (inputRegNumber != null)
+            if (inputRegNumber != null)
         {
             model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
         }
