@@ -15,7 +15,10 @@ namespace Garage_2.Models.ReceiptViewModel {
 
         [Display(Name = "Vehicle parked at time")]
         public DateTime ParkingTime { get; set; }
-        
 
+        [DataType(DataType.Currency)]
+        public int Cost { get; set; }
+
+        public int TotalTimeParked { get; set; }
     }
 }
