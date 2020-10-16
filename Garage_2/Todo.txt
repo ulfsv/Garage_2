@@ -1,5 +1,6 @@
 1. ***KLAR*** Uppercase i modellen ParkedVehicle. Stefan/Mattias
 2. Stefan visar hur man rensar cachen
 3. Feedback efter parkerad bil
-4. Ta bort Privacysidan?
+4. Ta bort Privacysidan och länk dit?
 5. Vad ska vara landningsida/hemsida?
+6. 
