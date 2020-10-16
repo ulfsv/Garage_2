@@ -77,11 +77,6 @@ namespace Garage_2.Controllers
                 ModelState.AddModelError("RegisterNumber", "RegisterNumber already exists");
             }
 
-
-
-
-
-
             if (ModelState.IsValid)
             {
                 db.Add(parkedVehicle);
@@ -150,8 +145,8 @@ namespace Garage_2.Controllers
                 return NotFound();
             }
 
-            var parkedVehicle = await db.ParkedVehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var parkedVehicle = await db.ParkedVehicle.FirstOrDefaultAsync(m => m.Id == id);
+
             if (parkedVehicle == null)
             {
                 return NotFound();
@@ -159,6 +154,8 @@ namespace Garage_2.Controllers
 
             return View(parkedVehicle);
         }
+
+
 
         // POST: ParkedVehicles/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -185,8 +182,8 @@ namespace Garage_2.Controllers
                 return NotFound();
             }
 
-            var parkedVehicle = await db.ParkedVehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var parkedVehicle = await db.ParkedVehicle.FirstOrDefaultAsync(m => m.Id == id);
+
             if (parkedVehicle == null)
             {
                 return NotFound();
@@ -199,11 +196,9 @@ namespace Garage_2.Controllers
                 receipt.PricePerHour = 100;
                 receipt.TotalTimeParked = CalculateTime(parkedVehicle.ParkedDateTime);
                 receipt.Cost = CalculatePrice(receipt.TotalTimeParked, receipt.PricePerHour);
-                
-
-                //receipt.Cost = CalculatePrice(CalculatePrice(CalculateTime(parkedVehicle.ParkedDateTime),receipt.PricePerHour)) ;
             }
 
+            await DeleteConfirmed((int)id);
             return View(receipt);
         }
     

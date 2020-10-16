@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<Garage_2.Models.ViewModels.ParkedViewModel>
 
-   
+
 @{
     ViewData["Title"] = "Index2";
 }
 
 <h1>Garage overview</h1>
-<br/>
+<br />
 <form asp-controller="ParkedVehicles" asp-action="Index" method="get">
     <div class="input-group">
         <input type="text" name="inputRegNumber" class="form-control" placeholder="Search on register number" />
@@ -15,7 +15,7 @@
         </div>
     </div>
 </form>
-<br/>
+<br />
 <p>
     <a asp-action="Create">Park Vehicle</a>
 </p>
@@ -31,29 +31,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.ParkedDateTime)
             </th>
-            
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisterNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkedDateTime)
-            </td>
-           
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegisterNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkedDateTime)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
