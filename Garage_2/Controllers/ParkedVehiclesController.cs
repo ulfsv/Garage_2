@@ -196,7 +196,7 @@ namespace Garage_2.Controllers
                 receipt = new Receipt();
                 receipt.ParkingTime = parkedVehicle.ParkedDateTime;
                 receipt.RegNr = parkedVehicle.RegisterNumber;
-                receipt.PricePerHour = 100;// TODO Do somewhere else
+                receipt.PricePerHour = 100;
                 receipt.TotalTimeParked = CalculateTime(parkedVehicle.ParkedDateTime);
                 receipt.Cost = CalculatePrice(receipt.TotalTimeParked, receipt.PricePerHour);
                 
