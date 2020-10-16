@@ -13,15 +13,19 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            
             <div class="form-group">
                 <label asp-for="VehicleType" class="control-label"></label>
-                <select asp-for="VehicleType" class="form-control"></select>
+                <select asp-for="VehicleType" asp-items="Html.GetEnumSelectList<VehicleTypeEnum>()" class="form-control" ></select>
                 <span asp-validation-for="VehicleType" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="RegisterNumber" class="control-label"></label>
-                <select asp-for="VehicleType" asp-items="Html.GetEnumSelectList<VehicleTypeEnum>()" class="form-control"></select>                <span asp-validation-for="RegisterNumber" class="text-danger"></span>
+                <input asp-for="RegisterNumber" class="form-control" /> 
+                <span asp-validation-for="RegisterNumber" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="Color" class="control-label"></label>
                 <input asp-for="Color" class="form-control" />
