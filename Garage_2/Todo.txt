@@ -1,2 +1,3 @@
 ﻿1. Uppercase i modellen ParkedVehicle
 2. Stefan visar hur man rensar cachen
+3. Feedback efter parkerad bil

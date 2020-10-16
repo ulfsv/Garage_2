@@ -19,7 +19,14 @@ namespace Garage_2.Models {
         [Display(Name = "Register No")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Wrong format should be ABC123.")]
 
-        public string RegisterNumber { get; set; }
+        private string registerNumber;
+
+        public string RegisterNumber
+        {
+            get { return registerNumber; }
+            set { registerNumber = value.ToUpper(); }
+        }
+
         [Required]
         public string Color { get; set; }
         [Required]
