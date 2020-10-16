@@ -5,3 +5,4 @@
 5. Vad ska vara landningsida/hemsida? 
 6. Homelänken?
 7. Ja/nej kvitto
+8. Kolla så att inte edit ändrar parked tiden
