@@ -1,25 +1,32 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
-//let vehicleWasJustParked = false;
+if (sessionStorage.getItem("msgToUser")!== null && sessionStorage.msgShown != true) {
+    $("#alert-user").text(sessionStorage.msgToUser);
+    sessionStorage.msgShown = true;
+    $("#alert-user").show();
+}
+else {
+    $("#alert-user").hide();
+    sessionStorage.removeItem("msgToUser");
+}
 
-$(document).ready(function () {
-    if (document.querySelector(".btn-park-vehicle")) {
-        var btnParkVehicle = document.querySelector(".btn-park-vehicle");
-        btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
-    }
+if (document.querySelector("#btn-park-vehicle")) {
+    var btnParkVehicle = document.querySelector("#btn-park-vehicle");
+    btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
+}
 
-    $("#alert-user").text("Testa 222");
-    $("#alert-user").css(display, none);
-});
+if (document.querySelector("#btn-edit-vehicle")) {
+    var btnEditVehicle = document.querySelector("#btn-edit-vehicle");
+    btnEditVehicle.addEventListener("click", onBtnEditVehicleClick);
+}
 
 function onBtnParkVehicleClick() {
-    showVehicleParkedAlert();
-    vehicleWasJustParked = true;
+    sessionStorage.msgToUser = "Vehicle was parked";
+    sessionStorage.msgShown = false;
 }
 
-function showVehicleParkedAlert() {
-    $("#alert-user").text("The vehicle has been parked");
-    console.log("Parked"); /////////////////
+function onBtnEditVehicleClick() {
+    sessionStorage.msgToUser = "Vehicle was edited";
+    sessionStorage.msgShown = false;
 }
-
