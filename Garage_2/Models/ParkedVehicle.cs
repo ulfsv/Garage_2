@@ -16,13 +16,9 @@ namespace Garage_2.Models {
         public VehicleTypeEnum VehicleType { get; set; }
 
         private string registerNumber;
-
         [Required]
         [Display(Name = "Register No")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Wrong format should be ABC123.")]
-
-        
-
         public string RegisterNumber
         {
             get { return registerNumber; }

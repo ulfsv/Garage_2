@@ -73,3 +73,14 @@ body {
 .parking-cost {
     font-size: xx-large;
 }
+
+.alert {
+    margin-top: 10px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+}
