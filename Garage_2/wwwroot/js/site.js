@@ -1,10 +1,10 @@
 ﻿if (sessionStorage.getItem("msgToUser") !== null && sessionStorage.msgShown !== "true") {
-    $("#alert-user").text(sessionStorage.msgToUser);
+    $("#alert-user").text(sessionStorage.msgToUser); // TODO: Vanilla
     sessionStorage.msgShown = true;
-    $("#alert-user").show();
+    $("#alert-user").show(); // TODO: Vanilla
 }
 else {
-    $("#alert-user").hide();
+    $("#alert-user").hide(); // TODO: Vanilla
     sessionStorage.removeItem("msgToUser");
 }
 
