@@ -34,6 +34,7 @@ namespace Garage_2.Models {
         [Required]
         public string Brand { get; set; }
         [Required]
+        [Range(0, 18, ErrorMessage = "0 to 18 wheels allowed!")]
         [Display(Name = "Wheels No")]
 
         public int WheelsNumber { get; set; }

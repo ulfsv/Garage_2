@@ -13,6 +13,7 @@ namespace Garage_2.Models.DetailsViewModel {
         public VehicleTypeEnum VehicleType { get; set; }
 
         [Required]
+        [Range(0, 4, ErrorMessage = "0 to 4 wheels allowed!")]
         [Display(Name = "Wheels No")]
         public int WheelsNumber { get; set; }
         [Required]
