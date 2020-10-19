@@ -21,8 +21,8 @@ if (document.querySelector("#btn-edit-vehicle")) {
     btnEditVehicle.addEventListener("click", onBtnEditVehicleClick);
 }
 
-if (document.querySelector("#link-fetch-vehicle")) {
-    var linkFetchVehicle = document.querySelector("#link-fetch-vehicle");
+if (document.querySelector(".link-fetch-vehicle")) {
+    var linkFetchVehicle = document.querySelector(".link-fetch-vehicle");
     linkFetchVehicle.addEventListener("click", onLinkFetchVehicleClick);
 }
 
