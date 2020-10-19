@@ -15,6 +15,7 @@ using Garage_2.Models.ReceiptViewModel;
 
 
 
+
 namespace Garage_2.Controllers
 {
     public class ParkedVehiclesController : Controller
@@ -107,7 +108,8 @@ namespace Garage_2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime,CheckOutDateTime")] ParkedVehicle parkedVehicle)
+        // ,CheckOutDateTime,ParkedDateTime
+        public async Task<IActionResult> Edit(int id, [Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber")] ParkedVehicle parkedVehicle)
         {
             if (id != parkedVehicle.Id)
             {
