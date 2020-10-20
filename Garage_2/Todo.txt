@@ -3,10 +3,13 @@
 3. ***KLAR*** Feedback efter parkerad bil
 4. ***KLAR*** Ta bort Privacysidan och länk dit? Stefan/Mattias
 5. ***KLAR*** Vad ska vara landningsida/hemsida? 
-6. Homelänken?
+6. ***KLAR*** Homelänken?
 7. Ja/nej kvitto
-8. ***KLAR*** Kolla så att inte edit ändrar parked tiden. Ulf 
+8. ***KLAR*** Kolla så att inte edit ändrar parked tiden. Ulf
+9. Kolla upp remote-annotation för att validera regnummer vid inmatning i formulär 
 
 Bugglista
 ----------------------
-1. Visar bekräftelse på att man har parkerat även om man inte lyckades parkera p.g.a t.ex att registreringsnumret redan fanns
+1. Visar bekräftelsemodal på att man har parkerat även om man inte lyckades parkera p.g.a t.ex att registreringsnumret redan fanns
+      Tog bort valideringen så länge på park vehicle. Stefan ska försöka fixa detta
+2. Man ska inte få slå in parkeringstiden från vyn

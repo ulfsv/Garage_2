@@ -70,7 +70,9 @@ namespace Garage_2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle)
         {
-           
+            DateTime now = DateTime.Now;
+            parkedVehicle.ParkedDateTime = now; 
+
             bool IsProductRegNumberExist = db.ParkedVehicle.Any  // logic for reg nr
             (x => x.RegisterNumber == parkedVehicle.RegisterNumber && x.Id != parkedVehicle.Id);
             if (IsProductRegNumberExist == true)
@@ -206,9 +208,11 @@ namespace Garage_2.Controllers
     
         public int CalculateTime( DateTime TimeParked)
         {
-            int totalTime = (((DateTime.Now.Day-TimeParked.Day)*24)+ DateTime.Now.Hour - TimeParked.Hour);
+            int minsFromDays = (DateTime.Now.Day - TimeParked.Day) * 24 * 60;
+            int minsFromhours = (DateTime.Now.Hour - TimeParked.Hour) * 60;
+            int mins = DateTime.Now.Minute - TimeParked.Minute;
+            int totalTime = (int)Math.Ceiling((minsFromDays + minsFromhours + mins) / 60.0);
             return totalTime;
-           
         }
 
         

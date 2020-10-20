@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 
 namespace Garage_2.Models {
+
     public class ParkedVehicle {
+        private DateTime parkedDateTime;
+
+
         [Required]
         public int Id { get; set; }
         [Required]
 
-        [Display( Name = "Type")]
+        [Display(Name = "Type")]
         public VehicleTypeEnum VehicleType { get; set; }
         
         private string registerNumber;
@@ -22,8 +26,7 @@ namespace Garage_2.Models {
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Wrong format should be ABC123.")]
 
 
-        public string RegisterNumber
-        {
+        public string RegisterNumber {
             get { return registerNumber; }
             set { registerNumber = value.ToUpper(); }
         }
@@ -42,9 +45,21 @@ namespace Garage_2.Models {
         [Required]
         [Display(Name = "Parked time")]
 
-        public DateTime ParkedDateTime { get; set; }
-       
-      
-    }
+        public DateTime ParkedDateTime {
+            get
+            {
+                return parkedDateTime;
+             }
+            set {
+           
+                parkedDateTime = DateTime.Now;
 
+            }
+
+
+
+
+        }
+
+    } 
 }
