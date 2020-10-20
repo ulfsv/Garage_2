@@ -15,9 +15,7 @@
         </div>
     </div>
 </form>
-<div id="alert-user" class="alert alert-primary" role="alert">
-    Text
-</div>
+
 <br/>
 <p>
     <a asp-action="Create">Park Vehicle</a>
@@ -39,25 +37,31 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VehicleType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RegisterNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ParkedDateTime)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Fetch vehicle","Receipt" , new { id = item.Id })
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkedDateTime)
+            </td>
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                
+                @Html.ActionLink(
+                    /* Link text */ "Fetch vehicle",
+                    /* Conroller */ "Receipt",
+                    /* Id */        new { id = item.Id },
+                    /* CSS class*/  new { @class = "link-fetch-vehicle" }
+          
+                )
+            </td>
+        </tr>
+}
     </tbody>
 </table>
