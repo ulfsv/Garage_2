@@ -87,10 +87,15 @@ body {
 }
 
 .container {
-    background: #5f5fd7;
+    background: linear-gradient(to bottom, #00ccff 13%, #660033 101%);
 }
 
 
 .container h1 {
     font-family: math;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    color: white;
 }
