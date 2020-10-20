@@ -10,3 +10,4 @@
 Bugglista
 ----------------------
 1. Visar bekräftelsemodal på att man har parkerat även om man inte lyckades parkera p.g.a t.ex att registreringsnumret redan fanns
+2. Man ska inte få slå in parkeringstiden från vyn
