@@ -8,10 +8,10 @@ else {
     sessionStorage.removeItem("msgToUser");
 }
 
-if (document.querySelector("#btn-park-vehicle")) {
-    var btnParkVehicle = document.querySelector("#btn-park-vehicle");
-    btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
-}
+//if (document.querySelector("#btn-park-vehicle")) {
+//    var btnParkVehicle = document.querySelector("#btn-park-vehicle");
+//    btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
+//}
 
 if (document.querySelector("#btn-edit-vehicle")) {
     var btnEditVehicle = document.querySelector("#btn-edit-vehicle");
@@ -30,10 +30,10 @@ if (document.querySelector(".link-fetch-vehicle")) {
 }
 
 /************************ onBtnParkVehicleClick ***********************************/
-function onBtnParkVehicleClick() {
-    sessionStorage.msgToUser = "Vehicle was parked";
-    sessionStorage.msgShown = false;
-}
+//function onBtnParkVehicleClick() {
+//    sessionStorage.msgToUser = "Vehicle was parked";
+//    sessionStorage.msgShown = false;
+//}
 
 /************************ onBtnEditVehicleClick ***********************************/
 function onBtnEditVehicleClick() {
