@@ -1,10 +1,10 @@
 ﻿if (sessionStorage.getItem("msgToUser") !== null && sessionStorage.msgShown !== "true") {
-    $("#alert-user").text(sessionStorage.msgToUser); // TODO: Vanilla
+    $("#alert-user").text(sessionStorage.msgToUser); // TODO: Vanilla JS
+    $("#alert-user").show(); // TODO: Vanilla JS
     sessionStorage.msgShown = true;
-    $("#alert-user").show(); // TODO: Vanilla
 }
 else {
-    $("#alert-user").hide(); // TODO: Vanilla
+    $("#alert-user").hide(); // TODO: Vanilla JS
     sessionStorage.removeItem("msgToUser");
 }
 
@@ -31,20 +31,17 @@ if (document.querySelector(".link-fetch-vehicle")) {
 /************************ onBtnParkVehicleClick ***********************************/
 function onBtnParkVehicleClick() {
     sessionStorage.msgToUser = "Vehicle was parked";
-    // TODO: Try to input reg number here 
     sessionStorage.msgShown = false;
 }
 
 /************************ onBtnEditVehicleClick ***********************************/
 function onBtnEditVehicleClick() {
     sessionStorage.msgToUser = "Vehicle was edited";
-    // TODO: Try to input reg number here 
     sessionStorage.msgShown = false;
 }
 
 /************************ onLinkFetchVehicleClick *********************************/
 function onLinkFetchVehicleClick() {
     sessionStorage.msgToUser = "Vehicle was fetched";
-    // TODO: Try to input reg number here 
     sessionStorage.msgShown = false;
 }
