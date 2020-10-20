@@ -6,7 +6,7 @@
 6. ***KLAR*** Homelänken?
 7. Ja/nej kvitto
 8. ***KLAR*** Kolla så att inte edit ändrar parked tiden. Ulf
-9. Kolla upp remote för att validera regnummer vid inmatning i formulär 
+9. Kolla upp remote-annotation för att validera regnummer vid inmatning i formulär 
 
 Bugglista
 ----------------------
