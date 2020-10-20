@@ -24,7 +24,8 @@ if (document.querySelector(".link-fetch-vehicle")) {
 
     // Loop through all the "Fetch vehicle"-links to add event listener
     for (var i = 0; i < fetchLinkes.length; i++) {
-        fetchLinkes[i].addEventListener("click", onLinkFetchVehicleClick);
+     //   fetchLinkes[i].addEventListener("click", onLinkFetchVehicleClick);
+        fetchLinkes[i].addEventListener("click", showConfirmation);
     }
 }
 
@@ -44,4 +45,10 @@ function onBtnEditVehicleClick() {
 function onLinkFetchVehicleClick() {
     sessionStorage.msgToUser = "Vehicle was fetched";
     sessionStorage.msgShown = false;
+}
+
+function showConfirmation() {
+    document.querySelector("#popup-confirmation").style.display = "block";
+    document.querySelector("#popup-confirmation").style.opacity = "1";
+
 }
