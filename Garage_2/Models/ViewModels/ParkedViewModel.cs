@@ -9,6 +9,8 @@ namespace Garage_2.Models.ViewModels
 {
     public class ParkedViewModel
     {
+        private DateTime parkedDateTime;
+
         [Required]
         [Display(Name = "Type")]
         public VehicleTypeEnum VehicleType { get; set; }

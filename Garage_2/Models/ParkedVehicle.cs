@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 
 namespace Garage_2.Models {
+
     public class ParkedVehicle {
+        private DateTime parkedDateTime;
+
+
         [Required]
         public int Id { get; set; }
         [Required]
 
-        [Display( Name = "Type")]
+        [Display(Name = "Type")]
         public VehicleTypeEnum VehicleType { get; set; }
 
         [Required]
@@ -21,8 +25,7 @@ namespace Garage_2.Models {
 
         private string registerNumber;
 
-        public string RegisterNumber
-        {
+        public string RegisterNumber {
             get { return registerNumber; }
             set { registerNumber = value.ToUpper(); }
         }
@@ -41,9 +44,21 @@ namespace Garage_2.Models {
         [Required]
         [Display(Name = "Parked time")]
 
-        public DateTime ParkedDateTime { get; set; }
-       
-      
-    }
+        public DateTime ParkedDateTime {
+            get
+            {
+                return parkedDateTime;
+             }
+            set {
+           
+                parkedDateTime = DateTime.Now;
 
+            }
+
+
+
+
+        }
+
+    } 
 }
