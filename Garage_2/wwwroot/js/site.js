@@ -1,25 +1,54 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿if (sessionStorage.getItem("msgToUser") !== null && sessionStorage.msgShown !== "true") {
+    $("#alert-user").text(sessionStorage.msgToUser); // TODO: Vanilla JS
+    $("#alert-user").show(); // TODO: Vanilla JS
+    sessionStorage.msgShown = true;
+}
+else {
+    $("#alert-user").hide(); // TODO: Vanilla JS
+    sessionStorage.removeItem("msgToUser");
+}
 
-//let vehicleWasJustParked = false;
+if (document.querySelector("#btn-park-vehicle")) {
+    var btnParkVehicle = document.querySelector("#btn-park-vehicle");
+    btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
+}
 
-$(document).ready(function () {
-    if (document.querySelector(".btn-park-vehicle")) {
-        var btnParkVehicle = document.querySelector(".btn-park-vehicle");
-        btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
+if (document.querySelector("#btn-edit-vehicle")) {
+    var btnEditVehicle = document.querySelector("#btn-edit-vehicle");
+    btnEditVehicle.addEventListener("click", onBtnEditVehicleClick);
+}
+
+if (document.querySelector(".link-fetch-vehicle")) {
+
+    var fetchLinkes = document.getElementsByClassName("link-fetch-vehicle");
+
+    // Loop through all the "Fetch vehicle"-links to add event listener
+    for (var i = 0; i < fetchLinkes.length; i++) {
+     //   fetchLinkes[i].addEventListener("click", onLinkFetchVehicleClick);
+        fetchLinkes[i].addEventListener("click", showConfirmation);
     }
+}
 
-    $("#alert-user").text("Testa 222");
-    $("#alert-user").css(display, none);
-});
-
+/************************ onBtnParkVehicleClick ***********************************/
 function onBtnParkVehicleClick() {
-    showVehicleParkedAlert();
-    vehicleWasJustParked = true;
+    sessionStorage.msgToUser = "Vehicle was parked";
+    sessionStorage.msgShown = false;
 }
 
-function showVehicleParkedAlert() {
-    $("#alert-user").text("The vehicle has been parked");
-    console.log("Parked"); /////////////////
+/************************ onBtnEditVehicleClick ***********************************/
+function onBtnEditVehicleClick() {
+    sessionStorage.msgToUser = "Vehicle was edited";
+    sessionStorage.msgShown = false;
 }
 
+/************************ onLinkFetchVehicleClick *********************************/
+function onLinkFetchVehicleClick() {
+    sessionStorage.msgToUser = "Vehicle was fetched";
+    sessionStorage.msgShown = false;
+}
+
+function showConfirmation() {
+    document.querySelector("#popup-confirmation").style.display = "block";
+    document.querySelector("#popup-confirmation").style.opacity = "1";
+
+}
