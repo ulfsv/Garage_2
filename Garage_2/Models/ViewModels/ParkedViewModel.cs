@@ -9,7 +9,6 @@ namespace Garage_2.Models.ViewModels
 {
     public class ParkedViewModel
     {
-        private DateTime parkedDateTime;
 
         [Required]
         [Display(Name = "Type")]
@@ -23,8 +22,8 @@ namespace Garage_2.Models.ViewModels
         [Display(Name = "Parked time")]
 
         public DateTime ParkedDateTime { get; set; }
-        
-        
+
+
         [Required]
         public int Id { get; set; }
     }

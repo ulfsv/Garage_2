@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
+    <header id="changeColor">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="ParkedVehicles" asp-action="Index">Garage 2</a>
@@ -34,13 +34,15 @@
             <div id="alert-user" class="alert alert-primary" role="alert"></div>
             @RenderBody()
         </main>
-    </div>
+
 
     <footer class="border-top footer text-muted text-center">
-        <div class="container">
+        <div >
             &copy; 2020 - Garage_2  <a asp-area="" asp-controller="Home" asp-action="Privacy"></a>
         </div>
     </footer>
+    </div>
+
 
 
     <!-- Button trigger modal -->
