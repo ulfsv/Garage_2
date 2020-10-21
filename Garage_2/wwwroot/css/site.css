@@ -17,7 +17,7 @@ a {
 
 .btn-primary {
   color: #fff;
-  background-color: #1b6ec2;
+  
   border-color: #1861ac;
 }
 
@@ -109,4 +109,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
    
+}
+.head_color {
+    background-color: #97D9E1;
 }
