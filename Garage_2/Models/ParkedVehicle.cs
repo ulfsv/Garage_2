@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Garage_2.Models {
 
     public class ParkedVehicle {
-        private DateTime parkedDateTime;
+      
 
 
         [Required]
@@ -45,21 +45,13 @@ namespace Garage_2.Models {
         [Required]
         [Display(Name = "Parked time")]
 
-        public DateTime ParkedDateTime {
-            get
-            {
-                return parkedDateTime;
-             }
-            set {
-           
-                parkedDateTime = DateTime.Now;
-
-            }
+        public DateTime ParkedDateTime { get; set; }
 
 
 
 
-        }
 
-    } 
+
+
+    }
 }
