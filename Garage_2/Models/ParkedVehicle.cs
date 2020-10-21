@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace Garage_2.Models {
 
     public class ParkedVehicle {
+        private DateTime parkedDateTime;
+
 
 
         [Required]
@@ -48,7 +50,12 @@ namespace Garage_2.Models {
        
 
 
+            }
+
+
+
+
         }
 
     } 
-
+}
