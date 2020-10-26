@@ -18,11 +18,11 @@ namespace Garage_2.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ParkedVehicle>().HasData(
+            /*modelBuilder.Entity<ParkedVehicle>().HasData(
                 new ParkedVehicle
                 {
                     Id = 1,
-                    VehicleType = VehicleTypeEnum.Airplane,
+                    VehicleType = new VehicleType(),
                     RegisterNumber = "abc123",
                     Color = "Blue",
                     Model = "A1",
@@ -34,7 +34,7 @@ namespace Garage_2.Data
                 new ParkedVehicle
                 {
                     Id = 2,
-                    VehicleType = VehicleTypeEnum.Bus,
+                    VehicleType = new VehicleType(),
                     RegisterNumber = "dkl785",
                     Color = "Black",
                     Model = "B2",
@@ -46,15 +46,18 @@ namespace Garage_2.Data
                 new ParkedVehicle
                 {
                     Id = 3,
-                    VehicleType = VehicleTypeEnum.Boat,
+                    VehicleType = new VehicleType(),
                     RegisterNumber = "uio159",
                     Color = "Red",
                     Model = "C3",
                     Brand = "Saga",
                     WheelsNumber = 0,
                     ParkedDateTime = DateTime.Now.AddMinutes(-3)
-                });
+                }); ;
+            */
         }
+
+        public DbSet<Garage_2.Models.Member> Member { get; set; }
 
     }
 }

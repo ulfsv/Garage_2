@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,17 +10,10 @@ using System.Threading.Tasks;
 namespace Garage_2.Models {
 
     public class ParkedVehicle {
-       
-
-
-
         [Required]
         public int Id { get; set; }
         [Required]
 
-        [Display(Name = "Type")]
-        public VehicleTypeEnum VehicleType { get; set; }
-        
         private string registerNumber;
 
         [Required]
@@ -46,15 +40,18 @@ namespace Garage_2.Models {
         [Display(Name = "Parked time")]
 
         public DateTime ParkedDateTime { get; set; }
-       
 
+        // Foreign keys
+        public int MemberId { get; set; }
 
-            }
+        [Display(Name = "Type")]
+        public int VehicleTypeId { get; set; }
 
-
-
-
-        }
+        // Navigation properties
+        public VehicleType VehicleType { get; set; }
+        public Member Member { get; set; }
+    }
+}
 
     
 
