@@ -14,5 +14,6 @@ namespace Garage_2.Models
 
         // Navigation property
         public ICollection<ParkedVehicle> ParkedVehicles { get; set; }
+
     }
 }

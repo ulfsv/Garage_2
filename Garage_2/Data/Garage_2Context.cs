@@ -14,10 +14,15 @@ namespace Garage_2.Data
         {
         }
 
-        public DbSet<Garage_2.Models.ParkedVehicle> ParkedVehicle { get; set; }
+        public DbSet<ParkedVehicle> ParkedVehicle { get; set; }
+        public DbSet<Member> Member { get; set; }
+        public DbSet<VehicleType> VehicleType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //The seed entity for entity type 'ParkedVehicle' cannot be added because it has the navigation 'VehicleType' set. To seed relationships you need to add the related entity seed to 
+            //'VehicleType' and spec
+            // ify the foreign key values { 'VehicleTypeId'}. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the involved property values.
             modelBuilder.Entity<ParkedVehicle>().HasData(
                 new ParkedVehicle
                 {
@@ -53,10 +58,30 @@ namespace Garage_2.Data
                     Brand = "Saga",
                     WheelsNumber = 0,
                     ParkedDateTime = DateTime.Now.AddMinutes(-3)
-                }); ;
+                });
+
+
+            modelBuilder.Entity<VehicleType>().HasData(
+                new VehicleType
+                {
+                    Id = 1,
+                    VehicType = "Tractor"
+                },
+
+                new VehicleType
+                {
+                    Id = 2,
+                    VehicType = "Tractor2"
+                },
+
+                new VehicleType
+                {
+                    Id = 3,
+                    //VehicleType = new VehicleType().VehicType,
+                    VehicType = "Tractor3"
+                });
         }
 
-        public DbSet<Garage_2.Models.Member> Member { get; set; }
 
     }
 }
