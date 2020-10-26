@@ -18,7 +18,7 @@ namespace Garage_2.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<ParkedVehicle>().HasData(
+            modelBuilder.Entity<ParkedVehicle>().HasData(
                 new ParkedVehicle
                 {
                     Id = 1,
@@ -54,7 +54,6 @@ namespace Garage_2.Data
                     WheelsNumber = 0,
                     ParkedDateTime = DateTime.Now.AddMinutes(-3)
                 }); ;
-            */
         }
 
         public DbSet<Garage_2.Models.Member> Member { get; set; }
