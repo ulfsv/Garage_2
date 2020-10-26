@@ -70,7 +70,9 @@ namespace Garage_2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle)
         {
-           
+            DateTime now = DateTime.Now;
+            parkedVehicle.ParkedDateTime = now; 
+
             bool IsProductRegNumberExist = db.ParkedVehicle.Any  // logic for reg nr
             (x => x.RegisterNumber == parkedVehicle.RegisterNumber && x.Id != parkedVehicle.Id);
             if (IsProductRegNumberExist == true)
