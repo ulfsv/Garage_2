@@ -9,7 +9,7 @@
 <br />
 <form asp-controller="ParkedVehicles" asp-action="Index" method="get">
     <div class="input-group">
-        <input type="text" name="inputSearchString" class="form-control" placeholder="Search on register number or vehicle type" required/>
+        <input type="text" name="inputSearchString" class="form-control" placeholder="Search on register number or vehicle type" required />
         <div class="input-group-append">
             <input type="submit" class="btn btn-primary" value="Search" />
         </div>
@@ -18,7 +18,7 @@
 
 @if (ViewData["message"].ToString() != "")
 {
-    <div id="alert-nothing-found" class="alert alert-warning" role="alert">@Html.Encode(ViewData["message"])</div>
+    <div id="alert-nothing-found" class="alert alert-warning" role="alert">@Html.Raw(ViewData["message"])</div>
 }
 
 <br />

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Web;
 
 namespace Garage_2.Controllers
 {
@@ -55,12 +55,11 @@ namespace Garage_2.Controllers
                         break;
                     }
                 }
-
             }
 
             if (searchHit == false && inputSearchString != null)
             {
-                ViewData["message"] = "Sorry, nothing found!";
+                ViewData["message"] = "Sorry, nothing found!" + "<br />" + "Showing all vehicles ";
                 return View("Index2", await model.ToListAsync());
             }
             else
