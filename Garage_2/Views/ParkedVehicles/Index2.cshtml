@@ -15,7 +15,12 @@
         </div>
     </div>
 </form>
-<div>@Html.Encode(ViewData["message"])</div>
+
+@if (ViewData["message"].ToString() != "")
+{
+    <div id="alert-nothing-found" class="alert alert-warning" role="alert">@Html.Encode(ViewData["message"])</div>
+}
+
 <br />
 <p>
     <a asp-action="Create">Park Vehicle</a>
