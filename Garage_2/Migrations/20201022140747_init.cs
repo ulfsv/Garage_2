@@ -14,7 +14,7 @@ namespace Garage_2.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VehicleType = table.Column<int>(nullable: false),
-                    RegisterNumber = table.Column<string>(nullable: false),
+                    RegisterNumber = table.Column<string>(nullable: true),
                     Color = table.Column<string>(nullable: false),
                     Model = table.Column<string>(nullable: false),
                     Brand = table.Column<string>(nullable: false),
@@ -29,17 +29,17 @@ namespace Garage_2.Migrations
             migrationBuilder.InsertData(
                 table: "ParkedVehicle",
                 columns: new[] { "Id", "Brand", "Color", "Model", "ParkedDateTime", "RegisterNumber", "VehicleType", "WheelsNumber" },
-                values: new object[] { 1, "Airbus", "Blue", "A1", new DateTime(2020, 10, 14, 13, 36, 52, 505, DateTimeKind.Local).AddTicks(817), "abc123", 2, 10 });
+                values: new object[] { 1, "Airbus", "Blue", "A1", new DateTime(2020, 10, 22, 14, 5, 46, 50, DateTimeKind.Local).AddTicks(7439), "ABC123", 2, 10 });
 
             migrationBuilder.InsertData(
                 table: "ParkedVehicle",
                 columns: new[] { "Id", "Brand", "Color", "Model", "ParkedDateTime", "RegisterNumber", "VehicleType", "WheelsNumber" },
-                values: new object[] { 2, "Volvo", "Black", "B2", new DateTime(2020, 10, 14, 15, 38, 52, 513, DateTimeKind.Local).AddTicks(112), "dkl785", 4, 4 });
+                values: new object[] { 2, "Volvo", "Black", "B2", new DateTime(2020, 10, 22, 16, 7, 46, 65, DateTimeKind.Local).AddTicks(426), "DKL785", 4, 4 });
 
             migrationBuilder.InsertData(
                 table: "ParkedVehicle",
                 columns: new[] { "Id", "Brand", "Color", "Model", "ParkedDateTime", "RegisterNumber", "VehicleType", "WheelsNumber" },
-                values: new object[] { 3, "Saga", "Red", "C3", new DateTime(2020, 10, 14, 15, 35, 52, 513, DateTimeKind.Local).AddTicks(197), "uio159", 3, 0 });
+                values: new object[] { 3, "Saga", "Red", "C3", new DateTime(2020, 10, 22, 16, 4, 46, 65, DateTimeKind.Local).AddTicks(538), "UIO159", 3, 0 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

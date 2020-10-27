@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage_2.Migrations
 {
     [DbContext(typeof(Garage_2Context))]
-    [Migration("20201014133853_init")]
+    [Migration("20201022140747_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,6 @@ namespace Garage_2.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("RegisterNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VehicleType")
@@ -64,8 +63,8 @@ namespace Garage_2.Migrations
                             Brand = "Airbus",
                             Color = "Blue",
                             Model = "A1",
-                            ParkedDateTime = new DateTime(2020, 10, 14, 13, 36, 52, 505, DateTimeKind.Local).AddTicks(817),
-                            RegisterNumber = "abc123",
+                            ParkedDateTime = new DateTime(2020, 10, 22, 14, 5, 46, 50, DateTimeKind.Local).AddTicks(7439),
+                            RegisterNumber = "ABC123",
                             VehicleType = 2,
                             WheelsNumber = 10
                         },
@@ -75,8 +74,8 @@ namespace Garage_2.Migrations
                             Brand = "Volvo",
                             Color = "Black",
                             Model = "B2",
-                            ParkedDateTime = new DateTime(2020, 10, 14, 15, 38, 52, 513, DateTimeKind.Local).AddTicks(112),
-                            RegisterNumber = "dkl785",
+                            ParkedDateTime = new DateTime(2020, 10, 22, 16, 7, 46, 65, DateTimeKind.Local).AddTicks(426),
+                            RegisterNumber = "DKL785",
                             VehicleType = 4,
                             WheelsNumber = 4
                         },
@@ -86,8 +85,8 @@ namespace Garage_2.Migrations
                             Brand = "Saga",
                             Color = "Red",
                             Model = "C3",
-                            ParkedDateTime = new DateTime(2020, 10, 14, 15, 35, 52, 513, DateTimeKind.Local).AddTicks(197),
-                            RegisterNumber = "uio159",
+                            ParkedDateTime = new DateTime(2020, 10, 22, 16, 4, 46, 65, DateTimeKind.Local).AddTicks(538),
+                            RegisterNumber = "UIO159",
                             VehicleType = 3,
                             WheelsNumber = 0
                         });
