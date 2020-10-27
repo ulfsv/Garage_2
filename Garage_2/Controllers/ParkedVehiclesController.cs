@@ -79,6 +79,13 @@ namespace Garage_2.Controllers
             {
                 ModelState.AddModelError("RegisterNumber", "RegisterNumber already exists");
             }
+            
+            bool MaxNbrParkedExceeded = false;
+            if (db.ParkedVehicle.Count() > 8)
+                MaxNbrParkedExceeded = true;
+
+            if (MaxNbrParkedExceeded == true)
+                ModelState.AddModelError("RegisterNumber", "No spots left for now");
 
             if (ModelState.IsValid)
             {
