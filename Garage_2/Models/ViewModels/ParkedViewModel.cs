@@ -12,7 +12,7 @@ namespace Garage_2.Models.ViewModels
 
         [Required]
         [Display(Name = "Type")]
-        public VehicleTypeEnum VehicleType { get; set; }
+        public VehicleType VehicleType { get; set; }
 
         [Required]
         [Display(Name = "Register No")]

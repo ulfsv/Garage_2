@@ -26,7 +26,7 @@ namespace Garage_2.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index(string inputRegNumber = null)
         {
-            var model = db.ParkedVehicle.Select(p => new ParkedViewModel() { Id = p.Id, /*VehicleType = p.VehicleType,*/ RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime });
+            var model = db.ParkedVehicle.Select(p => new ParkedViewModel() { Id = p.Id, VehicleType = p.VehicleType, RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime });
 
             if (inputRegNumber != null)
             {
