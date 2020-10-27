@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Garage_2.Data;
+using Garage_2.Models;
+using Garage_2.Models.ReceiptViewModel;
+using Garage_2.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Garage_2.Data;
-using Garage_2.Models;
-using Garage_2.Models.ViewModels;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Windows;
-using Garage_2.Models.ReceiptViewModel;
 
 
 namespace Garage_2.Controllers
