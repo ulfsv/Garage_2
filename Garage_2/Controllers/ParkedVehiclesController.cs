@@ -38,18 +38,19 @@ namespace Garage_2.Controllers
             {
                 foreach (var m in model)
                 {
-                    if (m.RegisterNumber == inputRegNumber)
+                    // Searching for registration number
+                    if (m.RegisterNumber == inputRegNumber.ToUpper())
                     {
-                        model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
+                        model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber.ToUpper()));
+                        break;
                     }
-                    else if (m.VehicleTypeVehicType == inputRegNumber)
+                    // Searching for vehicle type
+                    else if (m.VehicleTypeVehicType.ToLower() == inputRegNumber.ToLower())
                     {
-                        model = model.Where(p => p.VehicleTypeVehicType.Contains(inputRegNumber));
+                        model = model.Where(p => p.VehicleTypeVehicType.ToLower().Contains(inputRegNumber.ToLower()));
+                        break;
                     }
                 }
-
-                //model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
-                //model = model.Where(p => p.VehicleTypeVehicType.Contains(inputRegNumber));
             }
 
             return View("Index2", await model.ToListAsync());
