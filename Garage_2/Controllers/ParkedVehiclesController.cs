@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Garage_2.Data;
+using Garage_2.Models;
+using Garage_2.Models.ReceiptViewModel;
+using Garage_2.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Garage_2.Data;
-using Garage_2.Models;
-using Garage_2.Models.ViewModels;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Windows;
-using Garage_2.Models.ReceiptViewModel;
+
 
 namespace Garage_2.Controllers
 {
@@ -26,7 +23,14 @@ namespace Garage_2.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index(string inputRegNumber = null)
         {
-            var model = db.ParkedVehicle.Select(p => new ParkedViewModel() { Id = p.Id, /*VehicleType = p.VehicleType,*/ RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime });
+            var model = db.ParkedVehicle.Include(s =>s.Member).Include(s => s.VehicleType)
+                .Select(p => new ParkedViewModel() { Id = p.Id,
+                    VehicleTypeVehicType = p.VehicleType.VehicType, RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime,
+                    MemberFullName = p.Member.FullName, MemberAvatar = p.Member.Avatar,
+                    MemberSocialSecurityNumber = p.Member.SocialSecurityNumber,
+                    MemberEmail = p.Member.Email,
+                    MemberAdress = p.Member.Adress
+                });
 
             if (inputRegNumber != null)
             {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Garage_2.Models
 {
@@ -10,6 +6,9 @@ namespace Garage_2.Models
     {
         // Primary key
         public int Id { get; set; }
+        
+        //TODO size
+
         public string VehicType { get; set; }
 
         // Navigation property

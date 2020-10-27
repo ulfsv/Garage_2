@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Garage_2.Migrations
 {
-    public partial class new_tables : Migration
+    public partial class New_seed5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
