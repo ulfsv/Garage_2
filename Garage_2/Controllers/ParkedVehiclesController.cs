@@ -23,7 +23,9 @@ namespace Garage_2.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index(string inputRegNumber = null)
         {
-            var model = db.ParkedVehicle.Include(s =>s.Member).Include(s => s.VehicleType)
+            var model = db.ParkedVehicle
+                .Include(s => s.Member)
+                .Include(s => s.VehicleType)
                 .Select(p => new ParkedViewModel() { Id = p.Id,
                     VehicleTypeVehicType = p.VehicleType.VehicType, RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime,
                     MemberFullName = p.Member.FullName, MemberAvatar = p.Member.Avatar,
@@ -34,8 +36,22 @@ namespace Garage_2.Controllers
 
             if (inputRegNumber != null)
             {
-                model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
+                foreach (var m in model)
+                {
+                    if (m.RegisterNumber == inputRegNumber)
+                    {
+                        model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
+                    }
+                    else if (m.VehicleTypeVehicType == inputRegNumber)
+                    {
+                        model = model.Where(p => p.VehicleTypeVehicType.Contains(inputRegNumber));
+                    }
+                }
+
+                //model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
+                //model = model.Where(p => p.VehicleTypeVehicType.Contains(inputRegNumber));
             }
+
             return View("Index2", await model.ToListAsync());
         }
 
