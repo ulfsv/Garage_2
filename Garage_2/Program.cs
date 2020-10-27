@@ -37,10 +37,6 @@ namespace Garage_2
         }
 
 
-
-
-
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Garage_2.Models;
 using Microsoft.EntityFrameworkCore;
-using Garage_2.Models;
 
-namespace Garage_2.Data {
+namespace Garage_2.Data
+{
     public class Garage_2Context : DbContext {
         public Garage_2Context(DbContextOptions<Garage_2Context> options)
             : base(options) {
         }
 
         public DbSet<ParkedVehicle> ParkedVehicle { get; set; }
-         public DbSet<Member> Member { get; set; }
-         public DbSet<VehicleType> VehicleType { get; set; }
+        public DbSet<Member> Member { get; set; }
+        public DbSet<VehicleType> VehicleType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             //The seed entity for entity type 'ParkedVehicle' cannot be added because it has the navigation 'VehicleType' set. To seed relationships you need to add the related entity seed to 
