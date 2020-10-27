@@ -10,7 +10,7 @@ namespace Garage_2.Models.DetailsViewModel {
 
         [Required]
         [Display(Name = "Type")]
-        public VehicleTypeEnum VehicleType { get; set; }
+        public String VehicleTypeVehicType { get; set; }
 
         [Required]
         [Range(0, 4, ErrorMessage = "0 to 4 wheels allowed!")]

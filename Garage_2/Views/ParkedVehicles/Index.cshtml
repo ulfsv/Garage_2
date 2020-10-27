@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Garage_2.Models.ParkedVehicle>
+﻿
+@model IEnumerable<Garage_2.Models.ParkedVehicle>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.VehicleType)
+                @Html.DisplayNameFor(model => model.VehicleType.VehicType)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegisterNumber)
@@ -41,7 +42,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.VehicleType)
+                @Html.DisplayFor(modelItem => item.VehicleType.VehicType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegisterNumber)

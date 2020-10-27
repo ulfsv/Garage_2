@@ -4,14 +4,16 @@ using Garage_2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Garage_2.Migrations
 {
     [DbContext(typeof(Garage_2Context))]
-    partial class Garage_2ContextModelSnapshot : ModelSnapshot
+    [Migration("20201026230059_next")]
+    partial class next
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,9 +88,6 @@ namespace Garage_2.Migrations
 
                     b.Property<int>("VehicleTypeId")
                         .HasColumnType("int");
-
-                    b.Property<string>("VehicleTypeVehicType")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("WheelsNumber")
                         .HasColumnType("int");

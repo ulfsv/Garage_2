@@ -49,6 +49,7 @@ namespace Garage_2.Models {
 
         // Navigation properties
         public VehicleType VehicleType { get; set; }
+        //public string VehicleTypeVehicType { get; set; }
         public Member Member { get; set; }
     }
 }
