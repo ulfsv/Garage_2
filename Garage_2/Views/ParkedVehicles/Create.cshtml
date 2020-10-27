@@ -42,11 +42,8 @@
                 <input asp-for="WheelsNumber" class="form-control" />
                 <span asp-validation-for="WheelsNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ParkedDateTime" class="control-label"></label>
-                <input asp-for="ParkedDateTime" class="form-control" />
-                <span asp-validation-for="ParkedDateTime" class="text-danger"></span>
-            </div>
+           
+
             <div class="form-group">
                 <input type="submit" id="btn-park-vehicle" value="Park" class="btn btn-primary"/>
             </div>
@@ -59,10 +56,6 @@
 </div>
 
 @section Scripts {
-   
-
-    
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-//

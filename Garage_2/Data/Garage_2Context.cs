@@ -14,15 +14,21 @@ namespace Garage_2.Data
         {
         }
 
-        public DbSet<Garage_2.Models.ParkedVehicle> ParkedVehicle { get; set; }
+        public DbSet<ParkedVehicle> ParkedVehicle { get; set; }
+        public DbSet<Member> Member { get; set; }
+        public DbSet<VehicleType> VehicleType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //The seed entity for entity type 'ParkedVehicle' cannot be added because it has the navigation 'VehicleType' set. To seed relationships you need to add the related entity seed to 
+            //'VehicleType' and spec
+            // ify the foreign key values { 'VehicleTypeId'}. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the involved property values.
+            /*
             modelBuilder.Entity<ParkedVehicle>().HasData(
                 new ParkedVehicle
                 {
                     Id = 1,
-                    VehicleType = VehicleTypeEnum.Airplane,
+                    VehicleType = new VehicleType(),
                     RegisterNumber = "abc123",
                     Color = "Blue",
                     Model = "A1",
@@ -34,7 +40,7 @@ namespace Garage_2.Data
                 new ParkedVehicle
                 {
                     Id = 2,
-                    VehicleType = VehicleTypeEnum.Bus,
+                    VehicleType = new VehicleType(),
                     RegisterNumber = "dkl785",
                     Color = "Black",
                     Model = "B2",
@@ -46,7 +52,7 @@ namespace Garage_2.Data
                 new ParkedVehicle
                 {
                     Id = 3,
-                    VehicleType = VehicleTypeEnum.Boat,
+                    VehicleType = new VehicleType(),
                     RegisterNumber = "uio159",
                     Color = "Red",
                     Model = "C3",
@@ -54,7 +60,28 @@ namespace Garage_2.Data
                     WheelsNumber = 0,
                     ParkedDateTime = DateTime.Now.AddMinutes(-3)
                 });
-        }
 
+
+            modelBuilder.Entity<VehicleType>().HasData(
+                new VehicleType
+                {
+                    Id = 1,
+                    VehicType = "Tractor"
+                },
+
+                new VehicleType
+                {
+                    Id = 2,
+                    VehicType = "Tractor2"
+                },
+
+                new VehicleType
+                {
+                    Id = 3,
+                    //VehicleType = new VehicleType().VehicType,
+                    VehicType = "Tractor3"
+                });
+            */
+        }
     }
 }
