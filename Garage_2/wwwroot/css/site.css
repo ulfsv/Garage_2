@@ -76,6 +76,8 @@ html {
 }
 
 .alert {
+    border-color: #000;
+    border-width: thin;
     margin-top: 10px;
     padding-top: 24px;
     padding-bottom: 24px;
