@@ -2,9 +2,12 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+ #changeColor { 
+    background : #99d8e1;
 }
 
 /* Provide sufficient contrast against white background */
@@ -14,7 +17,7 @@ a {
 
 .btn-primary {
   color: #fff;
-  background-color: #1b6ec2;
+  
   border-color: #1861ac;
 }
 
@@ -27,7 +30,9 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
 }
 @media (min-width: 768px) {
   html {
@@ -58,17 +63,19 @@ html {
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position:center;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+
+    
+  
 }
+  
+
 
 .parking-cost {
     font-size: xx-large;
@@ -87,10 +94,22 @@ body {
 }
 
 .container {
-    background: #5f5fd7;
+   
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+  
 }
 
 
-.container h1 {
-    font-family: math;
+    .container h1 {
+        font-family: math;
+        text-align: center;
+    }
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+   
+}
+.head_color {
+    background-color: #97D9E1;
 }
