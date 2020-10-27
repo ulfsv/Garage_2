@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage_2.Migrations
 {
     [DbContext(typeof(Garage_2Context))]
-    [Migration("20201026224956_R-Enum")]
-    partial class REnum
+    [Migration("20201027124440_New_seed5")]
+    partial class New_seed5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

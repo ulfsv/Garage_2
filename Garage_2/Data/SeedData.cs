@@ -87,7 +87,7 @@ namespace Garage_2.Data
                         WheelsNumber = fake.Random.Int(0, 20),
                         ParkedDateTime = fake.Date.Recent(),
 
-                        Member = fake.Random.ListItem<Member>(members),
+                        Member = fake.Random.ListItem<Member>(members), // TODO
                         VehicleType = fake.Random.ListItem<VehicleType>(vehicleTypes)
                     };
 
@@ -95,9 +95,6 @@ namespace Garage_2.Data
                 }
 
                 db.AddRange(parkedVehicles);
-
-
-               
             }
         }
     }

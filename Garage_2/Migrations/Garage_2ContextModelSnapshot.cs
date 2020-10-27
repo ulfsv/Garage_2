@@ -87,9 +87,6 @@ namespace Garage_2.Migrations
                     b.Property<int>("VehicleTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("VehicleTypeVehicType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("WheelsNumber")
                         .HasColumnType("int");
 
