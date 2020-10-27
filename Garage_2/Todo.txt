@@ -1,3 +1,5 @@
+Garage 2.0
+-------------------------------------------------------
 1. ***KLAR*** Uppercase i modellen ParkedVehicle. Stefan/Mattias
 2. ***KLAR*** Stefan visar hur man rensar cachen
 3. ***KLAR*** Feedback efter parkerad bil
@@ -8,12 +10,85 @@
 8. ***KLAR*** Kolla så att inte edit ändrar parked tiden. Ulf
 9. Kolla upp remote-annotation för att validera regnummer vid inmatning i formulär 
 
-Bugglista
-----------------------
+
+Bugglista 2.0
+-------------------------------------------------------
 1. Visar bekräftelsemodal på att man har parkerat även om man inte lyckades parkera p.g.a t.ex att registreringsnumret redan fanns
       Tog bort valideringen så länge på park vehicle. Stefan ska försöka fixa detta
 2. Man ska inte få slå in parkeringstiden från vyn
 
+
 Garage 3.0
 --------------------------------------------------------
 101. Add town to ZIP?
+
+
+Bugglista 3.0
+-------------------------------------------------------
+101. Fick detta vid försök att perkera vehicle:
+    "An unhandled exception occurred while processing the request.
+SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_ParkedVehicle_Member_MemberId". The conflict occurred in database "Garage_2Context-9319c7d1-44bc-490d-9d99-f94709cf4b0b", table "dbo.Member", column 'Id'.
+The statement has been terminated.
+Microsoft.Data.SqlClient.SqlCommand+<>c.<ExecuteDbDataReaderAsync>b__164_0(Task<SqlDataReader> result)
+
+DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+
+Stack Query Cookies Headers Routing
+SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_ParkedVehicle_Member_MemberId". The conflict occurred in database "Garage_2Context-9319c7d1-44bc-490d-9d99-f94709cf4b0b", table "dbo.Member", column 'Id'. The statement has been terminated.
+Microsoft.Data.SqlClient.SqlCommand+<>c.<ExecuteDbDataReaderAsync>b__164_0(Task<SqlDataReader> result)
+System.Threading.Tasks.ContinuationResultTaskFromResultTask<TAntecedentResult, TResult>.InnerInvoke()
+System.Threading.Tasks.Task+<>c.<.cctor>b__274_0(object obj)
+System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, object state)
+System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, object state)
+System.Threading.Tasks.Task.ExecuteWithThreadLocal(ref Task currentTaskSlot, Thread threadPoolThread)
+Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+
+Show raw exception details
+DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable<ModificationCommandBatch> commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable<ModificationCommandBatch> commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList<IUpdateEntry> entriesToSave, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, bool acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync<TState, TResult>(TState state, Func<DbContext, TState, CancellationToken, Task<TResult>> operation, Func<DbContext, TState, CancellationToken, Task<ExecutionResult<TResult>>> verifySucceeded, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Garage_2.Controllers.ParkedVehiclesController.Create(ParkedVehicle parkedVehicle) in ParkedVehiclesController.cs
++
+                await db.SaveChangesAsync();
+Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor+TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, object controller, object[] arguments)
+System.Threading.Tasks.ValueTask<TResult>.get_Result()
+System.Runtime.CompilerServices.ValueTaskAwaiter<TResult>.GetResult()
+Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask<IActionResult> actionResultValueTask)
+Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, object state, bool isCompleted)
+Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(ref State next, ref Scope scope, ref object state, ref bool isCompleted)
+Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, object state, bool isCompleted)
+Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, object state, bool isCompleted)
+Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(ref State next, ref Scope scope, ref object state, ref bool isCompleted)
+Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, object state, bool isCompleted)
+Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+
+Show raw exception details"
+
+DET VIKTIGA VERKAR VARA DETTA:
+"Garage_2.Controllers.ParkedVehiclesController.Create(ParkedVehicle parkedVehicle) in ParkedVehiclesController.cs
+-
+                ModelState.AddModelError("RegisterNumber", "RegisterNumber already exists");
+            }
+            if (ModelState.IsValid)
+            {
+                db.Add(parkedVehicle);
+                await db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(parkedVehicle);
+        }
+        // GET: ParkedVehicles/Edit/5"
