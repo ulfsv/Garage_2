@@ -23,6 +23,8 @@ namespace Garage_2.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index(string inputSearchString = null)
         {
+            bool searchHit = false;
+            
             var model = db.ParkedVehicle
                 .Include(s => s.Member)
                 .Include(s => s.VehicleType)
@@ -36,24 +38,36 @@ namespace Garage_2.Controllers
 
             if (inputSearchString != null)
             {
-                foreach (var m in model)
+                 foreach (var m in model)
                 {
                     // Searching for registration number
                     if (m.RegisterNumber == inputSearchString.ToUpper())
                     {
                         model = model.Where(p => p.RegisterNumber.Contains(inputSearchString.ToUpper()));
+                        searchHit = true;
                         break;
                     }
                     // Searching for vehicle type
                     else if (m.VehicleTypeVehicType.ToLower() == inputSearchString.ToLower())
                     {
                         model = model.Where(p => p.VehicleTypeVehicType.ToLower().Contains(inputSearchString.ToLower()));
+                        searchHit = true;
                         break;
                     }
                 }
+
             }
 
-            return View("Index2", await model.ToListAsync());
+            if (searchHit == false && inputSearchString != null)
+            {
+                ViewData["message"] = "Sorry, nothing found!";
+                return View("Index2", await model.ToListAsync());
+            }
+            else
+            {
+                ViewData["message"] = "";
+                return View("Index2", await model.ToListAsync());
+            }
         }
 
         // GET: ParkedVehicles/Details/5
