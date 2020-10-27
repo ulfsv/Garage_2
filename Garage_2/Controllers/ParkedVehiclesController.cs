@@ -21,7 +21,7 @@ namespace Garage_2.Controllers
         }
 
         // GET: ParkedVehicles
-        public async Task<IActionResult> Index(string inputRegNumber = null)
+        public async Task<IActionResult> Index(string inputSearchString = null)
         {
             var model = db.ParkedVehicle
                 .Include(s => s.Member)
@@ -34,20 +34,20 @@ namespace Garage_2.Controllers
                     MemberAdress = p.Member.Adress
                 });
 
-            if (inputRegNumber != null)
+            if (inputSearchString != null)
             {
                 foreach (var m in model)
                 {
                     // Searching for registration number
-                    if (m.RegisterNumber == inputRegNumber.ToUpper())
+                    if (m.RegisterNumber == inputSearchString.ToUpper())
                     {
-                        model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber.ToUpper()));
+                        model = model.Where(p => p.RegisterNumber.Contains(inputSearchString.ToUpper()));
                         break;
                     }
                     // Searching for vehicle type
-                    else if (m.VehicleTypeVehicType.ToLower() == inputRegNumber.ToLower())
+                    else if (m.VehicleTypeVehicType.ToLower() == inputSearchString.ToLower())
                     {
-                        model = model.Where(p => p.VehicleTypeVehicType.ToLower().Contains(inputRegNumber.ToLower()));
+                        model = model.Where(p => p.VehicleTypeVehicType.ToLower().Contains(inputSearchString.ToLower()));
                         break;
                     }
                 }
