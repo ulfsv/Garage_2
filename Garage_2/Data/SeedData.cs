@@ -18,6 +18,7 @@ namespace Garage_2.Data
             {
                 if (db.ParkedVehicle.Any())
                 {
+                    //db.ParkedVehicle.RemoveRange(db.ParkedVehicle)
                     return;
                 }
 
@@ -25,20 +26,21 @@ namespace Garage_2.Data
 
                 //********************** Seeding members **********************************************
                 List<Member> members = new List<Member>();
-                var fName = fake.Name.FirstName();
-                var lName = fake.Name.LastName();
-
+                
                 for (int i = 0; i < 20; i++)
                 {
+                    var fName = fake.Name.FirstName();
+                    var lName = fake.Name.LastName();
+
                     Member member = new Member()
                     {
                         FirstName = fName,
                         LastName = lName,
                         Phone = fake.Phone.PhoneNumber(),
-                        SocialSecurityNumber = fake.Random.Digits(10, 1, 9).ToString(),
+                        SocialSecurityNumber = string.Join("", fake.Random.Digits(10, 1, 9)),
                         Email = fake.Internet.Email(fName, lName),
-                        Street = fake.Address.StreetName() + fake.Random.Digits(3, 1, 9),
-                        ZIP = fake.Random.Digits(5, 0, 9).ToString(),
+                        Street = $"{fake.Address.StreetName()} {fake.Random.Int(1, 400)}",
+                        ZIP = string.Join("", fake.Random.Digits(5, 0, 9)),
                         Avatar = fake.Internet.Avatar()
                     };
 
@@ -46,7 +48,7 @@ namespace Garage_2.Data
                 }
 
                 db.AddRange(members);
-
+                
                 //*********** Seeding VehicleType *********************************************************
                 var vehicleTypes = new List<VehicleType>();
 
@@ -75,7 +77,7 @@ namespace Garage_2.Data
 
                 for (int i = 0; i < 20; i++)
                 {
-                    regNum = (fake.Random.Chars('A', 'Z', 3)).ToString();
+                    regNum = string.Join("", fake.Random.Chars('A', 'Z', 3));
                     regNum += fake.Random.Int(001, 999).ToString();
 
                     ParkedVehicle parkedVehicle = new ParkedVehicle()
@@ -83,11 +85,12 @@ namespace Garage_2.Data
                         RegisterNumber = regNum,
                         Color = fake.Commerce.Color(),
                         Model = fake.Vehicle.Model(),
-                        Brand = fake.Company.CompanyName(),
+                        Brand = fake.Vehicle.Manufacturer(),
                         WheelsNumber = fake.Random.Int(0, 20),
                         ParkedDateTime = fake.Date.Recent(),
 
-                        Member = fake.Random.ListItem<Member>(members), // TODO
+                        // Foreign keys
+                        Member = fake.Random.ListItem<Member>(members), 
                         VehicleType = fake.Random.ListItem<VehicleType>(vehicleTypes)
                     };
 
@@ -95,6 +98,7 @@ namespace Garage_2.Data
                 }
 
                 db.AddRange(parkedVehicles);
+                db.SaveChanges();
             }
         }
     }
