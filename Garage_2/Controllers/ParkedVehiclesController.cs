@@ -103,8 +103,13 @@ namespace Garage_2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle, string Members, string VehiTyp)
-        public async Task<IActionResult> Create([Bind("Id,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle, string Members, string VehicleTypes, string newVehicleType)
+        public async Task<IActionResult> Create
+            (
+                [Bind("Id,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle, 
+                string Members,         // From View member dropdown select
+                string VehicleTypes,    // From View vehicle type dropdown select
+                string newVehicleType   // From new vehicle input text field
+            )
         {
             DateTime now = DateTime.Now;
             parkedVehicle.ParkedDateTime = now; 
