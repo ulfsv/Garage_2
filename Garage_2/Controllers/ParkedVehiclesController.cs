@@ -3,8 +3,10 @@ using Garage_2.Models;
 using Garage_2.Models.ReceiptViewModel;
 using Garage_2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,7 +40,7 @@ namespace Garage_2.Controllers
             if (inputSearchString != null)
             {
                  foreach (var m in model)
-                {
+                 {
                     // Searching for registration number
                     if (m.RegisterNumber == inputSearchString.ToUpper())
                     {
@@ -89,6 +91,8 @@ namespace Garage_2.Controllers
         // GET: ParkedVehicles/Create
         public IActionResult Create()
         {
+            List<Member> membersList = db.Member.ToList<Member>();
+            ViewBag.Members = CreateDropdownSelectListItemForMembers(membersList);
             return View();
         }
 
@@ -97,7 +101,7 @@ namespace Garage_2.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle)
+        public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle, string Members)
         {
             DateTime now = DateTime.Now;
             parkedVehicle.ParkedDateTime = now; 
@@ -109,12 +113,30 @@ namespace Garage_2.Controllers
                 ModelState.AddModelError("RegisterNumber", "RegisterNumber already exists");
             }
 
+            int parsedMemberId = 0;
+
+            if (Int32.TryParse(Members, out parsedMemberId))
+            {
+                if (parsedMemberId == 0)
+                {
+                    ModelState.AddModelError("MemberId", "No member chosen!");
+                }
+
+                parkedVehicle.MemberId = parsedMemberId;
+            }
+
             if (ModelState.IsValid)
             {
                 db.Add(parkedVehicle);
                 await db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                List<Member> membersList = db.Member.ToList<Member>();
+                ViewBag.Members = CreateDropdownSelectListItemForMembers(membersList);
+            }
+
             return View(parkedVehicle);
         }
 
@@ -127,6 +149,7 @@ namespace Garage_2.Controllers
             }
 
             var parkedVehicle = await db.ParkedVehicle.FindAsync(id);
+
             if (parkedVehicle == null)
             {
                 return NotFound();
@@ -252,5 +275,24 @@ namespace Garage_2.Controllers
             
         }
 
+
+        public List<SelectListItem> CreateDropdownSelectListItemForMembers(List<Member> membersList)
+        {
+            List<SelectListItem> itemsList = null;
+            string selectListItemText = String.Empty; 
+
+            if (membersList != null)
+            {
+                itemsList = new List<SelectListItem>();
+                itemsList.Add(new SelectListItem { Text = "No member chosen", Value = "0" });
+
+                foreach (var member in membersList)
+                {
+                    selectListItemText = $"{member.FullName} ({member.SocialSecurityNumber})";   
+                    itemsList.Add(new SelectListItem { Text = selectListItemText, Value = member.Id.ToString() });
+                }
+            }
+            return itemsList;
+        }
     }
 }
