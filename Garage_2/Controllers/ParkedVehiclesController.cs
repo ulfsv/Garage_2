@@ -77,14 +77,14 @@ namespace Garage_2.Controllers
             }
             int maxSpots = 20;
             bool MaxNbrParkedExceeded = false;
-            ViewData["MaxSpotsMesg"] = "";
+            ViewData["MaxSpotsMsg"] = "";
             if (db.ParkedVehicle.Count() == maxSpots)
                 MaxNbrParkedExceeded = true;
 
             if (MaxNbrParkedExceeded == true)
             {
                 ModelState.AddModelError("RegisterNumber", "No spots left for now");
-                ViewData["MaxSpotsMesg"] = "No spots left for now"; 
+                ViewData["MaxSpotsMsg"] = "No spots left for now"; 
             }
             if (ModelState.IsValid && MaxNbrParkedExceeded == false)
             {
