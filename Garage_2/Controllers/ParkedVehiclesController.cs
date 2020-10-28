@@ -88,26 +88,30 @@ namespace Garage_2.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Create
+        //************************************************** GET: ParkedVehicles/Create *********************************************************************
         public IActionResult Create()
         {
             List<Member> membersList = db.Member.ToList<Member>();
             ViewBag.Members = CreateDropdownSelectListItemForMembers(membersList);
+            List<VehicleType> vehicleTypesList = db.VehicleType.ToList<VehicleType>();
+            ViewBag.VehicleTypes = CreateDropdownSelectListItemForVehicleTypes(vehicleTypesList);
             return View();
         }
 
-        // POST: ParkedVehicles/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //************************************************** POST: ParkedVehicles/Create *********************************************************************
+       // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle, string Members)
+        //public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle, string Members, string VehiTyp)
+        public async Task<IActionResult> Create([Bind("Id,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle, string Members, string VehicleTypes, string newVehicleType)
         {
             DateTime now = DateTime.Now;
             parkedVehicle.ParkedDateTime = now; 
 
             bool IsProductRegNumberExist = db.ParkedVehicle.Any  // logic for reg nr
             (x => x.RegisterNumber == parkedVehicle.RegisterNumber && x.Id != parkedVehicle.Id);
+            
             if (IsProductRegNumberExist == true)
             {
                 ModelState.AddModelError("RegisterNumber", "RegisterNumber already exists");
@@ -119,10 +123,36 @@ namespace Garage_2.Controllers
             {
                 if (parsedMemberId == 0)
                 {
+                    // MemberId is used in Create.cshtml @Html.ValidationMessage(
                     ModelState.AddModelError("MemberId", "No member chosen!");
                 }
 
                 parkedVehicle.MemberId = parsedMemberId;
+            }
+
+            // If user adds new vehicle type, the new vehicle type overrides the ev. vehicle type chosen from the dropdown select
+            if (String.IsNullOrWhiteSpace(newVehicleType))
+            {
+                int parsedVehicleType = 0;
+
+                if (Int32.TryParse(VehicleTypes, out parsedVehicleType))
+                {
+                    if (parsedVehicleType == 0)
+                    {
+                        // VehicTyp is used in Create.cshtml @Html.ValidationMessage(
+                        ModelState.AddModelError("VehicTyp", "No vehicle type chosen!");
+                    }
+
+                    parkedVehicle.VehicleTypeId = parsedVehicleType;
+                }
+            }
+            else
+            {
+                bool isVehicleTypeUnique = checkIfVehicleTypeIsUnique(newVehicleType);
+                if (isVehicleTypeUnique == false)
+                {
+                    ModelState.AddModelError("VehicleTypeExist", "Vehicle type already exists in database");
+                }
             }
 
             if (ModelState.IsValid)
@@ -135,12 +165,15 @@ namespace Garage_2.Controllers
             {
                 List<Member> membersList = db.Member.ToList<Member>();
                 ViewBag.Members = CreateDropdownSelectListItemForMembers(membersList);
+                List<VehicleType> vehicleTypesList = db.VehicleType.ToList<VehicleType>();
+                ViewBag.VehicleTypes = CreateDropdownSelectListItemForVehicleTypes(vehicleTypesList);
             }
 
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Edit/5
+
+        //************************************** GET: ParkedVehicles/Edit/5 ********************************************************
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -276,6 +309,7 @@ namespace Garage_2.Controllers
         }
 
 
+        //******************************* CreateDropdownSelectListItemForMembers ***********************************
         public List<SelectListItem> CreateDropdownSelectListItemForMembers(List<Member> membersList)
         {
             List<SelectListItem> itemsList = null;
@@ -293,6 +327,41 @@ namespace Garage_2.Controllers
                 }
             }
             return itemsList;
+        }
+
+        //******************************* CreateDropdownSelectListItemForVehicleTypes ***********************************
+        public List<SelectListItem> CreateDropdownSelectListItemForVehicleTypes(List<VehicleType> vehicleTypesList)
+        {
+            List<SelectListItem> itemsList = null;
+            string selectListItemText = String.Empty;
+
+            if (vehicleTypesList != null)
+            {
+                itemsList = new List<SelectListItem>();
+                itemsList.Add(new SelectListItem { Text = "No vehicle type chosen", Value = "0" });
+
+                foreach (var veTyp in vehicleTypesList)
+                {
+                    selectListItemText = $"{veTyp.VehicType}";
+                    itemsList.Add(new SelectListItem { Text = selectListItemText, Value = veTyp.Id.ToString() });
+                }
+            }
+            return itemsList;
+        }
+
+
+        private bool checkIfVehicleTypeIsUnique(string newVehicleType)
+        {
+            string newVehicleTypeToLower = newVehicleType.ToLower();
+
+            var vehicleType = db.VehicleType.FirstOrDefault(v => v.VehicType.ToLower() == newVehicleTypeToLower);
+
+            if (vehicleType == null)
+            {
+                return true;
+            }
+            
+            return false;
         }
     }
 }
