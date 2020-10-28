@@ -14,9 +14,13 @@ using Garage_2.Models.ReceiptViewModel;
 
 namespace Garage_2.Controllers
 {
+
+    
     public class ParkedVehiclesController : Controller
     {
         private readonly Garage_2Context db;
+
+        public int MaxSpots { get; } = 20;
 
         public ParkedVehiclesController(Garage_2Context context)
         {
@@ -27,6 +31,8 @@ namespace Garage_2.Controllers
         public async Task<IActionResult> Index(string inputRegNumber = null)
         {
             var model = db.ParkedVehicle.Select(p => new ParkedViewModel() { Id = p.Id, /*VehicleType = p.VehicleType,*/ RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime });
+
+            ViewBag.spotsLeft = CalculateSpotsLeft();
 
             if (inputRegNumber != null)
             {
@@ -75,10 +81,10 @@ namespace Garage_2.Controllers
             {
                 ModelState.AddModelError("RegisterNumber", "RegisterNumber already exists");
             }
-            int maxSpots = 20;
+            
             bool MaxNbrParkedExceeded = false;
             ViewData["MaxSpotsMsg"] = "";
-            if (db.ParkedVehicle.Count() == maxSpots)
+            if (db.ParkedVehicle.Count() == MaxSpots)
                 MaxNbrParkedExceeded = true;
 
             if (MaxNbrParkedExceeded == true)
@@ -227,6 +233,11 @@ namespace Garage_2.Controllers
             int totalCost =  totalTime * PricePerHour;
             return totalCost;
             
+        }
+
+        public int CalculateSpotsLeft()
+        {
+            return MaxSpots - db.ParkedVehicle.Count(); 
         }
 
     }
