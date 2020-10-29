@@ -112,3 +112,29 @@ body {
 .head_color {
     background-color: #97D9E1;
 }
+
+hr {
+    border-top: 1px solid black;
+}
+
+.input-group-text {
+    width: 100%;
+    background-color: #fff;
+}
+
+#add-new-vehic-type-input,
+#add-new-vehic-type-input-label {
+    display: none;
+    text-align: left;
+}
+
+#add-new-vehic-type-label {
+    margin-bottom: 0;
+    margin-top: 0.5em;
+}
+
+#existing-vehicle-types-dropdown-select,
+#add-new-vehic-type-input {
+    margin-bottom: 1em;
+    color: #495057;
+}

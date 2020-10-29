@@ -29,6 +29,24 @@ if (document.querySelector(".link-fetch-vehicle")) {
     }
 }
 
+// Add new vehicle type
+$("#add-vehic-type").click(function () {
+    if ($("#add-vehic-type").is(":checked") == true) {
+        $('#existing-vehicle-types-dropdown-select').fadeOut("slow");
+        $('#existing-vehicle-types-label').fadeOut("slow", function () {
+            $('#add-new-vehic-type-input').fadeIn("slow");
+            $('#add-new-vehic-type-input-label').fadeIn("slow");
+        });
+
+    } else {
+        $('#add-new-vehic-type-input').fadeOut("slow");
+        $('#add-new-vehic-type-input-label').fadeOut("slow", function () {
+            $('#existing-vehicle-types-dropdown-select').fadeIn("slow");
+            $('#existing-vehicle-types-label').fadeIn("slow");
+        });
+    }
+});
+
 /************************ onBtnParkVehicleClick ***********************************/
 //function onBtnParkVehicleClick() {
 //    sessionStorage.msgToUser = "Vehicle was parked";

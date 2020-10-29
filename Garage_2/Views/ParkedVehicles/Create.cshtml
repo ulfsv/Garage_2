@@ -38,24 +38,37 @@
                 <span asp-validation-for="WheelsNumber" class="text-danger"></span>
             </div>
 
+            <hr />
+
             <div class="form-group">
-                <label for="newVehicleType" class="control-label">Add new vehicle type</label>
-                <input class="form-control" name="newVehicleType" />
-                <span class="text-danger">@Html.ValidationMessage("VehicleTypeExist")</span>
+                <label id="add-new-vehic-type-label" class="control-label">Add new vehicle type</label>
+                <input type="checkbox" id="add-vehic-type" name="add-vehicle-type" value="Bike">
             </div>
 
+
+            @*Add new vehicle type OR Choose from existing vehicle types*@
+
             <div class="form-group">
-                <label class="control-label">Existing vehicle types</label>
+                <label id="add-new-vehic-type-input-label" class="control-label">Add new vehicle type</label>
+                <input id="add-new-vehic-type-input" class="input-group-text" name="newVehicleType" placeholder="Please input new vehicle type name!" />
+
+                @* Från ParkedVehiclesController.cs ModelState.AddModelError( *@
+                <span class="text-danger">@Html.ValidationMessage("VehicTyp")</span>
+
+
+                <label id="existing-vehicle-types-label" class="control-label">Choose from existing vehicle types</label>
 
                 @* Från ViewBag.VehicleTypes *@
-                @Html.DropDownList("VehicleTypes", null, new { @class = "browser-default custom-select" })
+                @Html.DropDownList("VehicleTypes", null, new { id = "existing-vehicle-types-dropdown-select", @class = "browser-default custom-select" })
 
                 @* Från ParkedVehiclesController.cs ModelState.AddModelError( *@
                 <span class="text-danger">@Html.ValidationMessage("VehicTyp")</span>
             </div>
 
+            <hr />
+
             <div class="form-group">
-                <label class="control-label">Members</label>
+                <label class="control-label">Member</label>
 
                 @* Från ViewBag.Members *@
                 @Html.DropDownList("Members", null, new { @class = "browser-default custom-select" })
