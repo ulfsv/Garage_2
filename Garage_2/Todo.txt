@@ -1,3 +1,5 @@
+TODO Garage 2.0
+-------------------------------------------------------
 1. ***KLAR*** Uppercase i modellen ParkedVehicle. Stefan/Mattias
 2. ***KLAR*** Stefan visar hur man rensar cachen
 3. ***KLAR*** Feedback efter parkerad bil
@@ -8,8 +10,22 @@
 8. ***KLAR*** Kolla så att inte edit ändrar parked tiden. Ulf
 9. Kolla upp remote-annotation för att validera regnummer vid inmatning i formulär 
 
-Bugglista
-----------------------
+
+Bugglista Garage 2.0
+-------------------------------------------------------
 1. Visar bekräftelsemodal på att man har parkerat även om man inte lyckades parkera p.g.a t.ex att registreringsnumret redan fanns
       Tog bort valideringen så länge på park vehicle. Stefan ska försöka fixa detta
 2. Man ska inte få slå in parkeringstiden från vyn
+
+##############################################################################################################################################
+**********************************************************************************************************************************************
+
+TODO Garage 3.0
+--------------------------------------------------------
+101. Add town to ZIP?
+102. Checkbox to add new vehicle type
+
+
+Bugglista Garage 3.0
+-------------------------------------------------------
+102.

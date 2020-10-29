@@ -12,10 +12,11 @@ namespace Garage_2.Models {
     public class ParkedVehicle {
         public int Id { get; set; }
         
+
         private string registerNumber;
 
         [Required]
-        [Display(Name = "Register No")]
+        [Display(Name = "Register Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Wrong format should be ABC123.")]
 
         public string RegisterNumber {
@@ -23,20 +24,23 @@ namespace Garage_2.Models {
             set { registerNumber = value.ToUpper(); }
         }
 
+
         [Required]
         public string Color { get; set; }
+
         [Required]
         public string Model { get; set; }
+
         [Required]
         public string Brand { get; set; }
+
         [Required]
         [Range(0, 18, ErrorMessage = "0 to 18 wheels allowed!")]
-        [Display(Name = "Wheels No")]
-
+        [Display(Name = "Number of wheels")]
         public int WheelsNumber { get; set; }
+
         [Required]
         [Display(Name = "Parked time")]
-
         public DateTime ParkedDateTime { get; set; }
 
         
@@ -49,6 +53,7 @@ namespace Garage_2.Models {
         
         // Navigation properties
         public Member Member { get; set; }
+
         public VehicleType VehicleType { get; set; }
     }
 }

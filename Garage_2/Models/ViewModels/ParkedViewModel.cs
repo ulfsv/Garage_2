@@ -9,9 +9,6 @@ namespace Garage_2.Models.ViewModels
 {
     public class ParkedViewModel
     {
-
-      
-
         [Required]
         [Display(Name = "Register No")]
         public string RegisterNumber { get; set; }
@@ -20,7 +17,6 @@ namespace Garage_2.Models.ViewModels
         [Display(Name = "Parked time")]
 
         public DateTime ParkedDateTime { get; set; }
-
 
         [Required]
         public int Id { get; set; }
@@ -35,8 +31,5 @@ namespace Garage_2.Models.ViewModels
         public string MemberAdress { get; set; }
         public string MemberEmail { get; set; }
         public string MemberSocialSecurityNumber { get; set; }
-
-
-
     }
 }

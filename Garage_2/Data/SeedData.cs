@@ -8,6 +8,8 @@ using System.Linq;
 
 namespace Garage_2.Data
 {
+    // Seeding to tables Member, VehicleType and ParkedVehicle
+    // ParkedVehicle must be last
     public static class SeedData
     {
         public static void Initialize(IServiceProvider services)
@@ -18,16 +20,18 @@ namespace Garage_2.Data
             {
                 if (db.ParkedVehicle.Any())
                 {
-                    db.ParkedVehicle.RemoveRange(db.ParkedVehicle);
-                   // return;
+                    // Removeposts(db);
+
+                    return;
                 }
 
                 var fake = new Faker("sv");
+                List<Member> members;
 
-                //********************** Seeding members **********************************************
-                List<Member> members = new List<Member>();
+                // ********************** Seeding members ************************************************
+                members = new List<Member>();
                 
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 25; i++)
                 {
                     var fName = fake.Name.FirstName();
                     var lName = fake.Name.LastName();
@@ -100,6 +104,14 @@ namespace Garage_2.Data
                 db.AddRange(parkedVehicles);
                 db.SaveChanges();
             }
+        }
+
+
+        private static void Removeposts(Garage_2Context db)
+        {
+            db.ParkedVehicle.RemoveRange(db.ParkedVehicle);
+            db.Member.RemoveRange(db.Member);
+            db.VehicleType.RemoveRange(db.VehicleType);
         }
     }
 }
