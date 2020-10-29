@@ -1,5 +1,6 @@
 ﻿using Garage_2.Data;
 using Garage_2.Models;
+using Garage_2.Models.DetailsViewModels;
 using Garage_2.Models.ReceiptViewModel;
 using Garage_2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -29,12 +30,17 @@ namespace Garage_2.Controllers
                     MemberFullName = p.Member.FullName, MemberAvatar = p.Member.Avatar,
                     MemberSocialSecurityNumber = p.Member.SocialSecurityNumber,
                     MemberEmail = p.Member.Email,
-                    MemberAdress = p.Member.Adress
-                });
+                    MemberAdress = p.Member.Adress,
+                   // Include(c => c.ParkedVehicles<ParkedVehicle>)
 
-            if (inputRegNumber != null)
+                }
+                
+                );
+
+            if (inputRegNumber != null) // sökFunction
             {
-                model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber));
+                model = model.Where(p => p.RegisterNumber.Contains(inputRegNumber)  ); 
+                //SÖK BÅDA vehicle type  OCH reg NUMBER
             }
             return View("Index2", await model.ToListAsync());
         }
@@ -47,14 +53,38 @@ namespace Garage_2.Controllers
                 return NotFound();
             }
 
-            var parkedVehicle = await db.ParkedVehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (parkedVehicle == null)
+            /*  var parkedVehicle = await db.ParkedVehicle
+                  .FirstOrDefaultAsync(m => m.Id == id);*/
+
+            var model =  db.ParkedVehicle.Include(s => s.Member).Include(s => s.VehicleType).Include(s => s.Member.ParkedVehicles)
+                .Select(p => new DetailsViewModel()
+                {
+                    Id = p.Id,
+                    VehicleTypeVehicType = p.VehicleType.VehicType,
+                    RegisterNumber = p.RegisterNumber,
+                    ParkedDateTime = p.ParkedDateTime,
+                    MemberFullName = p.Member.FullName,
+                    Color=p.Color,
+                    Model=p.Model,
+                    Brand =p.Brand,
+                    WheelsNumber=p.WheelsNumber,
+                    MemberAvatar = p.Member.Avatar,
+                    // MemberSocialSecurityNumber = p.Member.SocialSecurityNumber,
+                    MemberEmail = p.Member.Email,
+                    MemberAdress = p.Member.Adress,
+                    ParkedVehicles = p.Member.ParkedVehicles
+                }).FirstOrDefault(s => s.Id == id);
+
+
+
+
+
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(parkedVehicle);
+            return View(  model);
         }
 
         // GET: ParkedVehicles/Create
@@ -71,7 +101,8 @@ namespace Garage_2.Controllers
         public async Task<IActionResult> Create([Bind("Id,VehicleType,RegisterNumber,Color,Model,Brand,WheelsNumber,ParkedDateTime")] ParkedVehicle parkedVehicle)
         {
             DateTime now = DateTime.Now;
-            parkedVehicle.ParkedDateTime = now; 
+            parkedVehicle.ParkedDateTime = now;
+           
 
             bool IsProductRegNumberExist = db.ParkedVehicle.Any  // logic for reg nr
             (x => x.RegisterNumber == parkedVehicle.RegisterNumber && x.Id != parkedVehicle.Id);
@@ -83,7 +114,9 @@ namespace Garage_2.Controllers
             if (ModelState.IsValid)
             {
                 db.Add(parkedVehicle);
-                await db.SaveChangesAsync();
+                db.VehicleType.Add(parkedVehicle.VehicleType);   /// to save data base to table VehicleType
+                await db.SaveChangesAsync(); 
+
                 return RedirectToAction(nameof(Index));
             }
             return View(parkedVehicle);
@@ -223,5 +256,44 @@ namespace Garage_2.Controllers
             
         }
 
-    }
+
+
+
+
+        public async Task<IActionResult> ViewVehicleDetails(int? id) {
+        
+                if (id == null)
+            {
+                return NotFound();
+            }
+
+
+            var model = await db.ParkedVehicle.Select(p => new VehicleDetals
+            {
+                Id = p.Id,
+                VehicleType = p.VehicleType.VehicType,
+                Brand = p.Brand,
+                Color = p.Color,
+                Model = p.Model,
+                ParkedDateTime = p.ParkedDateTime,
+                RegisterNumber = p.RegisterNumber,
+                WheelsNumber = p.WheelsNumber
+            }).FirstOrDefaultAsync(m => m.Id ==id);
+           
+              
+
+
+            return View("VehicleDetails", model);
+        }
+
+
+
+
+
+
+
+
+
+
+}
 }

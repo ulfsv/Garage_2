@@ -18,14 +18,18 @@
 
 <br/>
 <p>
-    <a asp-action="Create">Park Vehicle</a>
+    <a asp-action="Create" class=" btn bg-white btn-outline-primary btn-lg">Park Vehicle</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.MemberFullName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.VehicleTypeVehicType)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.RegisterNumber)
             </th>
@@ -39,6 +43,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberFullName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VehicleTypeVehicType)
             </td>

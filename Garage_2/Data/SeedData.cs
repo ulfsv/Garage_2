@@ -18,8 +18,8 @@ namespace Garage_2.Data
             {
                 if (db.ParkedVehicle.Any())
                 {
-                    //db.ParkedVehicle.RemoveRange(db.ParkedVehicle)
-                    return;
+                    db.ParkedVehicle.RemoveRange(db.ParkedVehicle);
+                   // return;
                 }
 
                 var fake = new Faker("sv");

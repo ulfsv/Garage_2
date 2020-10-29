@@ -28,6 +28,7 @@ namespace Garage_2.Models.ViewModels
         [Required]
         [Display(Name = "Type")]
         public string VehicleTypeVehicType { get; set; }  // VehicleType VehicType enligt konvention
+        [Display(Name = "Client Name")]
 
         public string MemberFullName { get; set; }
         public string MemberAvatar { get; set; }
