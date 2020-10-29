@@ -128,7 +128,7 @@ namespace Garage_2.Data
                         // Foreign keys
                         Member = fake.Random.ListItem<Member>(members), 
                         VehicleType = fake.Random.ListItem<VehicleType>(vehicleTypes),
-                        Garage = Range.Int(0, 20)
+                        Garage = ListItem<Garage>(i),
                     };
 
                     parkedVehicles.Add(parkedVehicle);
