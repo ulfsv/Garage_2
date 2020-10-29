@@ -19,6 +19,21 @@ namespace Garage_2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Garage_2.Models.Garage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ParkingSpaceNum")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Garage");
+                });
+
             modelBuilder.Entity("Garage_2.Models.Member", b =>
                 {
                     b.Property<int>("Id")
@@ -70,6 +85,9 @@ namespace Garage_2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GarageId")
+                        .HasColumnType("int");
+
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
@@ -91,6 +109,8 @@ namespace Garage_2.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GarageId");
 
                     b.HasIndex("MemberId");
 
@@ -116,6 +136,12 @@ namespace Garage_2.Migrations
 
             modelBuilder.Entity("Garage_2.Models.ParkedVehicle", b =>
                 {
+                    b.HasOne("Garage_2.Models.Garage", "Garage")
+                        .WithMany()
+                        .HasForeignKey("GarageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Garage_2.Models.Member", "Member")
                         .WithMany("ParkedVehicles")
                         .HasForeignKey("MemberId")

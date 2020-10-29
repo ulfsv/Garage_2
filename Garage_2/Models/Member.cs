@@ -20,6 +20,9 @@ namespace Garage_2.Models
         public string Adress => $"{Street}, {ZIP}";
         public string Avatar { get; set; }
 
+        // foreign key
+     //   public int ParkedVehicleId { get; set; }
+
         // Navigation property
         public ICollection<ParkedVehicle> ParkedVehicles { get; set; }
 

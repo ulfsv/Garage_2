@@ -10,10 +10,8 @@ using System.Threading.Tasks;
 namespace Garage_2.Models {
 
     public class ParkedVehicle {
-        [Required]
         public int Id { get; set; }
-        [Required]
-
+        
         private string registerNumber;
 
         [Required]
@@ -41,15 +39,23 @@ namespace Garage_2.Models {
 
         public DateTime ParkedDateTime { get; set; }
 
+        
         // Foreign keys
         public int MemberId { get; set; }
 
         [Display(Name = "Type")]
         public int VehicleTypeId { get; set; }
 
+        [Display(Name = "Parking lot")]
+        public int GarageId { get; set; }
+
         // Navigation properties
-        public VehicleType VehicleType { get; set; }
         public Member Member { get; set; }
+        public VehicleType VehicleType { get; set; }
+
+        //public Garage Garage { get; set; }
+
+        public ICollection<Garage> Garage { get; set; }
     }
 }
 
