@@ -21,7 +21,7 @@ namespace Garage_2.Controllers
             db = context;
         }
 
-        // GET: ParkedVehicles
+        //***************************************************************** GET: ParkedVehicles *********************************************
         public async Task<IActionResult> Index(string inputSearchString = null)
         {
             bool searchHit = false;
@@ -70,7 +70,8 @@ namespace Garage_2.Controllers
             }
         }
 
-        // GET: ParkedVehicles/Details/5
+
+        //***************************************** GET: ParkedVehicles/Details/5 *****************************************************************
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -78,8 +79,7 @@ namespace Garage_2.Controllers
                 return NotFound();
             }
 
-            var parkedVehicle = await db.ParkedVehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var parkedVehicle = await db.ParkedVehicle.FirstOrDefaultAsync(m => m.Id == id);
             if (parkedVehicle == null)
             {
                 return NotFound();
@@ -131,7 +131,6 @@ namespace Garage_2.Controllers
 
                 parkedVehicle.MemberId = parsedMemberId;
             }
-
 
             // If user adds new vehicle type, the new vehicle type overrides the vehicle type chosen from the dropdown select
             if (String.IsNullOrWhiteSpace(newVehicleType)) // No new vehicle type given by user
@@ -199,7 +198,7 @@ namespace Garage_2.Controllers
             return View(parkedVehicle);
         }
 
-        // POST: ParkedVehicles/Edit/5
+        //****************************************** POST: ParkedVehicles/Edit/5 *****************************************************
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -235,7 +234,7 @@ namespace Garage_2.Controllers
             return View(parkedVehicle);
         }
 
-        // GET: ParkedVehicles/Delete/5
+        //**************************************************** GET: ParkedVehicles/Delete/5 *************************************
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -254,8 +253,7 @@ namespace Garage_2.Controllers
         }
 
 
-
-        // POST: ParkedVehicles/Delete/5
+        //****************************************** POST: ParkedVehicles/Delete/5 *******************************************
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -299,7 +297,8 @@ namespace Garage_2.Controllers
             await DeleteConfirmed((int)id);
             return View(receipt);
         }
-    
+
+        //******************************************************** CalculateTime ****************************************
         public int CalculateTime( DateTime TimeParked)
         {
             int minsFromDays = (DateTime.Now.Day - TimeParked.Day) * 24 * 60;
@@ -309,12 +308,11 @@ namespace Garage_2.Controllers
             return totalTime;
         }
 
-        
+        //**************************************************** CalculatePrice *****************************************
         public int CalculatePrice( int totalTime, int PricePerHour)
         { 
             int totalCost =  totalTime * PricePerHour;
             return totalCost;
-            
         }
 
 
@@ -358,7 +356,7 @@ namespace Garage_2.Controllers
             return itemsList;
         }
 
-
+        //****************************************** checkIfVehicleTypeIsUnique ***************************
         private bool checkIfVehicleTypeIsUnique(string newVehicleType)
         {
             string newVehicleTypeToLower = newVehicleType.ToLower();
