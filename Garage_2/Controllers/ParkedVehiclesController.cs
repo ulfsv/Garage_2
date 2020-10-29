@@ -11,9 +11,13 @@ using System.Threading.Tasks;
 
 namespace Garage_2.Controllers
 {
+
+    
     public class ParkedVehiclesController : Controller
     {
         private readonly Garage_2Context db;
+
+        public int MaxSpots { get; } = 20;
 
         public ParkedVehiclesController(Garage_2Context context)
         {
@@ -31,6 +35,8 @@ namespace Garage_2.Controllers
                     MemberEmail = p.Member.Email,
                     MemberAdress = p.Member.Adress
                 });
+
+            ViewBag.spotsLeft = CalculateSpotsLeft();
 
             if (inputRegNumber != null)
             {
@@ -81,13 +87,16 @@ namespace Garage_2.Controllers
             }
             
             bool MaxNbrParkedExceeded = false;
-            if (db.ParkedVehicle.Count() > 8)
+            ViewData["MaxSpotsMsg"] = "";
+            if (db.ParkedVehicle.Count() == MaxSpots)
                 MaxNbrParkedExceeded = true;
 
             if (MaxNbrParkedExceeded == true)
+            {
                 ModelState.AddModelError("RegisterNumber", "No spots left for now");
-
-            if (ModelState.IsValid)
+                ViewData["MaxSpotsMsg"] = "No spots left for now"; 
+            }
+            if (ModelState.IsValid && MaxNbrParkedExceeded == false)
             {
                 db.Add(parkedVehicle);
                 await db.SaveChangesAsync();
@@ -228,6 +237,11 @@ namespace Garage_2.Controllers
             int totalCost =  totalTime * PricePerHour;
             return totalCost;
             
+        }
+
+        public int CalculateSpotsLeft()
+        {
+            return MaxSpots - db.ParkedVehicle.Count(); 
         }
 
     }
