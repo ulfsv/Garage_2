@@ -26,17 +26,23 @@ namespace Garage_2.Controllers
         public async Task<IActionResult> Index(string inputSearchString = null)
         {
             bool searchHit = false;
-            
+
             var model = db.ParkedVehicle
                 .Include(s => s.Member)
                 .Include(s => s.VehicleType)
-                .Select(p => new ParkedViewModel() { Id = p.Id,
-                    VehicleTypeVehicType = p.VehicleType.VehicType, RegisterNumber = p.RegisterNumber, ParkedDateTime = p.ParkedDateTime,
-                    MemberFullName = p.Member.FullName, MemberAvatar = p.Member.Avatar,
+                .Select(p => new ParkedViewModel()
+                {
+                    Id = p.Id,
+                    VehicleTypeVehicType = p.VehicleType.VehicType,
+                    RegisterNumber = p.RegisterNumber,
+                    ParkedDateTime = p.ParkedDateTime,
+                    MemberFullName = p.Member.FullName,
+                    MemberAvatar = p.Member.Avatar,
                     MemberSocialSecurityNumber = p.Member.SocialSecurityNumber,
                     MemberEmail = p.Member.Email,
-                    MemberAdress = p.Member.Adress,
-                   // Include(c => c.ParkedVehicles<ParkedVehicle>)
+                    MemberAdress = p.Member.Adress
+                    // Include(c => c.ParkedVehicles<ParkedVehicle>)
+                });
 
             if (inputSearchString != null)
             {
@@ -396,6 +402,8 @@ namespace Garage_2.Controllers
             {
                 return true;
             }
+
+            return false;
             
         }
 
