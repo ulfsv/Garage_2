@@ -10,6 +10,12 @@
     <h4>Member</h4>
     <hr />
     <dl class="row">
+
+      
+        <dd class="col-sm-12">
+            <img src="@Model.Avatar">
+        </dd>
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -51,12 +57,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ZIP)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Avatar)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Avatar)
         </dd>
     </dl>
 </div>

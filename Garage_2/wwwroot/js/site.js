@@ -13,6 +13,7 @@ else {
 //    btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
 //}
 
+
 if (document.querySelector("#btn-edit-vehicle")) {
     var btnEditVehicle = document.querySelector("#btn-edit-vehicle");
     btnEditVehicle.addEventListener("click", onBtnEditVehicleClick);

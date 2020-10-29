@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Garage_2.Models;
 
-namespace Garage_2.Models.DetailsViewModel {
+
+namespace Garage_2.Models.DetailsViewModels {
     public class DetailsViewModel {
         public int Id { get; set; }
 
@@ -22,6 +24,17 @@ namespace Garage_2.Models.DetailsViewModel {
         public string Model { get; set; }
         [Required]
         public string Brand { get; set; }
+        public string MemberFullName { get; set; }
+        public string MemberAdress { get; set; }
+        public string MemberAvatar { get; set; }
+        public string RegisterNumber { get; set; }
+        public string MemberEmail { get; set; }
+
+        public DateTime ParkedDateTime { get; set; }
+        public ICollection<ParkedVehicle> ParkedVehicles { get; set; }
+        public  DetailsViewModel() {
+            this.ParkedVehicles = ParkedVehicles;
+        }
 
 
 

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Garage_2.Models.ViewModels.MemberViewModel>
+
+@{
+    ViewData["Title"] = "Index2";
+}
+
+<h1>Members Overview</h1>
+
+<p>
+    <a asp-action="Create" class=" btn bg-white btn-outline-primary btn-lg">Add new Member</a>
+</p>
+
+
+
+<form asp-controller="Members" asp-action="Index" method="get">
+    <div class="input-group">
+        <input type="text" name="inputSSN" class="form-control" placeholder="Search on Social securety number" />
+        <div class="input-group-append">
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </div>
+    </div>
+</form>
+
+<br />
+
+
+
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+               
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SocialSecurityNumber)
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <img src="@item.Avatar" />
+
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SocialSecurityNumber)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
