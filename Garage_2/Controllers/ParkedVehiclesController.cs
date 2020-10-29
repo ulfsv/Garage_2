@@ -202,7 +202,6 @@ namespace Garage_2.Controllers
             if (ModelState.IsValid)
             {
                 db.Add(parkedVehicle);
-                db.VehicleType.Add(parkedVehicle.VehicleType);   /// to save data base to table VehicleType
                 await db.SaveChangesAsync(); 
 
                 return RedirectToAction(nameof(Index));
