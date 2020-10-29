@@ -6,8 +6,9 @@ namespace Garage_2.Models
     {
         // Primary key
         public int Id { get; set; }
-        
+
         //TODO size
+        public int  VehicSize { get; set; }
 
         public string VehicType { get; set; }
 

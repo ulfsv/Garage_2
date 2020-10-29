@@ -35,7 +35,11 @@ namespace Garage_2.Models.ViewModels
         public string MemberEmail { get; set; }
         public string MemberSocialSecurityNumber { get; set; }
 
-
-
+        internal class Count
+        {
+            public Count()
+            {
+            }
+        }
     }
 }

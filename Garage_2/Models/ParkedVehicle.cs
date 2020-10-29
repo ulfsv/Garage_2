@@ -46,10 +46,16 @@ namespace Garage_2.Models {
         [Display(Name = "Type")]
         public int VehicleTypeId { get; set; }
 
-        
+        [Display(Name = "Parking lot")]
+        public int GarageId { get; set; }
+
         // Navigation properties
         public Member Member { get; set; }
         public VehicleType VehicleType { get; set; }
+
+        //public Garage Garage { get; set; }
+
+        public ICollection<Garage> Garage { get; set; }
     }
 }
 
