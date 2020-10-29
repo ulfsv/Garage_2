@@ -91,15 +91,12 @@ namespace Garage_2.Controllers
         //************************************************** GET: ParkedVehicles/Create *********************************************************************
         public IActionResult Create()
         {
-            List<Member> membersList = db.Member.ToList<Member>();
-            ViewBag.Members = CreateDropdownSelectListItemForMembers(membersList);
-            List<VehicleType> vehicleTypesList = db.VehicleType.ToList<VehicleType>();
-            ViewBag.VehicleTypes = CreateDropdownSelectListItemForVehicleTypes(vehicleTypesList);
+            CreateDropDownLists();
             return View();
         }
 
         //************************************************** POST: ParkedVehicles/Create *********************************************************************
-       // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -178,10 +175,7 @@ namespace Garage_2.Controllers
             }
             else
             {
-                List<Member> membersList = db.Member.ToList<Member>();
-                ViewBag.Members = CreateDropdownSelectListItemForMembers(membersList);
-                List<VehicleType> vehicleTypesList = db.VehicleType.ToList<VehicleType>();
-                ViewBag.VehicleTypes = CreateDropdownSelectListItemForVehicleTypes(vehicleTypesList);
+                CreateDropDownLists();
             }
 
             return View(parkedVehicle);
@@ -377,6 +371,15 @@ namespace Garage_2.Controllers
             }
             
             return false;
+        }
+
+        //************************************ CreateDropDownLists *****************************************
+        private void CreateDropDownLists()
+        {
+            List<Member> membersList = db.Member.ToList<Member>();
+            ViewBag.Members = CreateDropdownSelectListItemForMembers(membersList);
+            List<VehicleType> vehicleTypesList = db.VehicleType.ToList<VehicleType>();
+            ViewBag.VehicleTypes = CreateDropdownSelectListItemForVehicleTypes(vehicleTypesList);
         }
     }
 }
