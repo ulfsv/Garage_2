@@ -135,8 +135,9 @@ namespace Garage_2.Controllers
                 parkedVehicle.MemberId = parsedMemberId;
             }
 
-            // If user adds new vehicle type, the new vehicle type overrides the ev. vehicle type chosen from the dropdown select
-            if (String.IsNullOrWhiteSpace(newVehicleType))
+
+            // If user adds new vehicle type, the new vehicle type overrides the vehicle type chosen from the dropdown select
+            if (String.IsNullOrWhiteSpace(newVehicleType)) // No new vehicle type given by user
             {
                 int parsedVehicleType = 0;
 
@@ -154,10 +155,19 @@ namespace Garage_2.Controllers
             else
             {
                 bool isVehicleTypeUnique = checkIfVehicleTypeIsUnique(newVehicleType);
+                
                 if (isVehicleTypeUnique == false)
                 {
                     ModelState.AddModelError("VehicleTypeExist", "Vehicle type already exists in database");
                 }
+                
+                // Create new Vehicle Type                
+                VehicleType newVT = new VehicleType();
+                newVT.VehicType = newVehicleType;
+                db.VehicleType.Add(newVT);
+                await db.SaveChangesAsync();
+
+                parkedVehicle.VehicleType = newVT;
             }
 
             if (ModelState.IsValid)
@@ -314,7 +324,7 @@ namespace Garage_2.Controllers
         }
 
 
-        //******************************* CreateDropdownSelectListItemForMembers ***********************************
+        //******************************* CreateDropdownSelectListItemForMembers **************************************
         public List<SelectListItem> CreateDropdownSelectListItemForMembers(List<Member> membersList)
         {
             List<SelectListItem> itemsList = null;
@@ -334,7 +344,7 @@ namespace Garage_2.Controllers
             return itemsList;
         }
 
-        //******************************* CreateDropdownSelectListItemForVehicleTypes ***********************************
+        //******************************* CreateDropdownSelectListItemForVehicleTypes **************************************
         public List<SelectListItem> CreateDropdownSelectListItemForVehicleTypes(List<VehicleType> vehicleTypesList)
         {
             List<SelectListItem> itemsList = null;

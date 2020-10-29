@@ -20,9 +20,9 @@ namespace Garage_2.Data
             {
                 if (db.ParkedVehicle.Any())
                 {
-                    // Removeposts(db);
+                    Removeposts(db);
 
-                    return;
+                    // return;
                 }
 
                 var fake = new Faker("sv");
@@ -105,6 +105,7 @@ namespace Garage_2.Data
                 db.SaveChanges();
             }
         }
+
 
         private static void Removeposts(Garage_2Context db)
         {
