@@ -26,6 +26,26 @@ namespace Garage_2.Data
 
                 //********************** Seeding members **********************************************
 
+                var parkingspaces = new Garage[20];
+                    
+                for (int i = 0; i < 20; i++)
+                    {
+                        
+                        var objGarage = new Garage { Id = i, ParkingSpaceNum = i };
+                        parkingspaces[i] = objGarage;
+                        db.AddRange(objGarage);
+                    }
+                        
+                /*foreach (var c in parkingspaces)
+                {
+                    //parkingspaces.Add(c);
+
+                    db.AddRange(c);
+
+                    //parkedVehicles.Add(parkedVehicle);
+                }*/
+
+                
                 //List<Garage> garages = new List<Garage>();
                 //var parkingspaces = new Garage[]
                 //{
