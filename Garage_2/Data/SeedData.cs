@@ -26,37 +26,24 @@ namespace Garage_2.Data
 
                 //********************** Seeding members **********************************************
 
-                var parkingspaces = new Garage[]
-                {
-                            new Garage{Id=1,ParkingSpaceNum=1},
-                            new Garage{Id=2,ParkingSpaceNum=2},
-                            new Garage{Id=3,ParkingSpaceNum=3},
-                            new Garage{Id=4,ParkingSpaceNum=4},
-                            new Garage{Id=5,ParkingSpaceNum=5},
-                            new Garage{Id=6,ParkingSpaceNum=6},
-                            new Garage{Id=7,ParkingSpaceNum=7},
-                            new Garage{Id=8,ParkingSpaceNum=8},
-                            new Garage{Id=9,ParkingSpaceNum=9},
-                            new Garage{Id=10,ParkingSpaceNum=10},
-                            new Garage{Id=11,ParkingSpaceNum=11},
-                            new Garage{Id=12,ParkingSpaceNum=12},
-                            new Garage{Id=13,ParkingSpaceNum=13},
-                            new Garage{Id=14,ParkingSpaceNum=14},
-                            new Garage{Id=15,ParkingSpaceNum=15},
-                            new Garage{Id=16,ParkingSpaceNum=16},
-                            new Garage{Id=17,ParkingSpaceNum=17},
-                            new Garage{Id=18,ParkingSpaceNum=18},
-                            new Garage{Id=19,ParkingSpaceNum=19},
-                            new Garage{Id=20,ParkingSpaceNum=20}                           
-                };
-                foreach (Garage c in parkingspaces)
+                var parkingspaces = new Garage[20];
+                    
+                for (int i = 0; i < 20; i++)
+                    {
+                        
+                        var objGarage = new Garage { Id = i, ParkingSpaceNum = i };
+                        parkingspaces[i] = objGarage;
+                        db.AddRange(objGarage);
+                    }
+                        
+                /*foreach (var c in parkingspaces)
                 {
                     //parkingspaces.Add(c);
 
                     db.AddRange(c);
 
                     //parkedVehicles.Add(parkedVehicle);
-                }
+                }*/
 
                 
 
