@@ -5,6 +5,7 @@ using Garage_2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,5 +26,6 @@ namespace Garage_2.Models.ViewModels {
         public string ZIP { get; set; }
         public string Adress => $"{Street}, {ZIP}";
         public string Avatar { get; set; }
+        public ICollection<ParkedVehicle> ParkedVehicles { get; set; }
     }
 }

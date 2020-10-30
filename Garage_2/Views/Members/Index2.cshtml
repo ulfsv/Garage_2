@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Garage_2.Models.ViewModels.MemberViewModel>
+﻿
+@model IEnumerable<Garage_2.Models.ViewModels.MemberViewModel>
 
 @{
     ViewData["Title"] = "Index2";
@@ -21,7 +22,7 @@
     </div>
 </form>
 
-<br />
+<br/>
 
 
 
@@ -33,9 +34,7 @@
     <thead>
         <tr>
 
-            <th>
-               
-            </th>
+           
 
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
@@ -46,6 +45,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.SocialSecurityNumber)
             </th>
+             <th> 
+                  Number of Vehickles 
+            </th>
 
 
         </tr>
@@ -53,30 +55,54 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
 
-                <td>
-                    <img src="@item.Avatar" />
+            @*<td>
+            <img src="@item.Avatar" />
 
-                </td>
+        </td>*@
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SocialSecurityNumber)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SocialSecurityNumber)
+            </td>
+            <td>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
-                </td>
-            </tr>
+                @*@Html.DisplayFor(modelItem => item.Model.ParkedVehicles.Count)*@
+
+                @Html.DisplayFor(modelItem => item.ParkedVehicles.Count)
+
+                @*<p asp-controller="Members" asp-action="ParkedViclesCount" asp-route-id="@item.Id">@ViewBag.C</p><br />*@
+            
+
+                    
+                
+
+                
+
+
+
+            </td>
+
+
+
+
+
+
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+            </td>
+        </tr>
         }
     </tbody>
 </table>
