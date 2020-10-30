@@ -26,9 +26,13 @@ namespace Garage_2.Data
                 }
 
                 var fake = new Faker("sv");
-                List<Member> members;
+                
+                // ********************** Parking spaces *************************************************
+
 
                 // ********************** Seeding members ************************************************
+                List<Member> members;
+
                 members = new List<Member>();
                 
                 for (int i = 0; i < 25; i++)
