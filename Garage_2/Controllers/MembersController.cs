@@ -24,18 +24,21 @@ namespace Garage_2.Controllers
         // GET: Members
         public async Task<IActionResult> Index(string inputSSN = null)
 
-        { 
-            var model = db.Member.Include(s => s.ParkedVehicles).Select(p => new MemberViewModel {
+        {
+            var model = db.Member.Include(s => s.ParkedVehicles).Select(p => new MemberViewModel
+            {
                 Id = p.Id,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
-                FullName =$"{p.FirstName}  {p.LastName}",
+                FullName = $"{p.FirstName}  {p.LastName}",
                 Avatar = p.Avatar,
-                ParkedVehicles= p.ParkedVehicles,
-                SocialSecurityNumber = p.SocialSecurityNumber, Email = p.Email,
-                Phone = p.Phone, Street = p.Street
-            }).Take(10);
+                ParkedVehicles = p.ParkedVehicles,
+                SocialSecurityNumber = p.SocialSecurityNumber,
+                Email = p.Email,
+                Phone = p.Phone,
+                Street = p.Street
 
+            });
             if (inputSSN != null) // sökFunction
             {
                 model = model.Where(p => p.SocialSecurityNumber.Contains(inputSSN));
