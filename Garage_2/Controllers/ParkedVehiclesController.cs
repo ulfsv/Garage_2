@@ -86,9 +86,6 @@ namespace Garage_2.Controllers
                 return NotFound();
             }
 
-            /*  var parkedVehicle = await db.ParkedVehicle
-                  .FirstOrDefaultAsync(m => m.Id == id);*/
-
             var model =  db.ParkedVehicle.Include(s => s.Member).Include(s => s.VehicleType).Include(s => s.Member.ParkedVehicles)
                 .Select(p => new DetailsViewModel
                 {
@@ -102,15 +99,10 @@ namespace Garage_2.Controllers
                     Brand =p.Brand,
                     WheelsNumber=p.WheelsNumber,
                     MemberAvatar = p.Member.Avatar,
-                    // MemberSocialSecurityNumber = p.Member.SocialSecurityNumber,
                     MemberEmail = p.Member.Email,
                     MemberAdress = p.Member.Adress,
                     ParkedVehicles = p.Member.ParkedVehicles
                 }).FirstOrDefault(s => s.Id == id);
-
-
-
-
 
             if (model == null)
             {

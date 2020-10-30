@@ -12,18 +12,15 @@ namespace Garage_2.Models {
     public class ParkedVehicle {
         public int Id { get; set; }
         
-
         private string registerNumber;
 
         [Required]
         [Display(Name = "Register Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Wrong format should be ABC123.")]
-
         public string RegisterNumber {
             get { return registerNumber; }
             set { registerNumber = value.ToUpper(); }
         }
-
 
         [Required]
         public string Color { get; set; }
