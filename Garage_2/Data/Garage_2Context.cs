@@ -11,13 +11,11 @@ namespace Garage_2.Data
         public DbSet<ParkedVehicle> ParkedVehicle { get; set; }
         public DbSet<Member> Member { get; set; }
         public DbSet<VehicleType> VehicleType { get; set; }
-
         public DbSet<ParkingSpace> ParkingSpace { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             //The seed entity for entity type 'ParkedVehicle' cannot be added because it has the navigation 'VehicleType' set. To seed relationships you need to add the related entity seed to 
-            //'VehicleType' and spec
-            // ify the foreign key values { 'VehicleTypeId'}. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the involved property values.
+            //'VehicleType' and specify the foreign key values { 'VehicleTypeId'}. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the involved property values.
         }
     }
 }

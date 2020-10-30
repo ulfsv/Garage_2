@@ -1,4 +1,5 @@
 ﻿using Bogus;
+
 using Garage_2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,20 +21,14 @@ namespace Garage_2.Data
             {
                 if (db.ParkedVehicle.Any())
                 {
-                    // Removeposts(db);
-
-                    return;
+                    Removeposts(db);
+                    //return;
                 }
 
                 var fake = new Faker("sv");
-                
-                // ********************** Parking spaces *************************************************
 
-
-                // ********************** Seeding members ************************************************
-                List<Member> members;
-
-                members = new List<Member>();
+               // ********************** Seeding members ************************************************
+                List<Member>  members = new List<Member>();
                 
                 for (int i = 0; i < 25; i++)
                 {
@@ -79,7 +74,7 @@ namespace Garage_2.Data
                 db.AddRange(vehicleTypes);
 
                 //*************************** Seeding ParkedVehicle *************************************
-                var parkedVehicles = new List<ParkedVehicle>();
+                List<ParkedVehicle> parkedVehicles = new List<ParkedVehicle>();
 
                 string regNum;
 
@@ -106,6 +101,29 @@ namespace Garage_2.Data
                 }
 
                 db.AddRange(parkedVehicles);
+                
+
+                // ********************** Seeding ParkingSpaces *************************************************
+                List<ParkingSpace> parkingSpaces = new List<ParkingSpace>();
+                int nrOfParkingSpaces = 20;
+
+                for (int i = 0; i < nrOfParkingSpaces; i++)
+                {
+                    ParkingSpace parkingSpace = new ParkingSpace()
+                    {
+                        // Foreign key
+                        ParkedVehicleId = i,
+
+                        // Foreign keys
+                        //ParkedVehicle = fake.Random.ListItem<ParkedVehicle>(parkedVehicles),
+                        ParkedVehicle = parkedVehicles[i]
+                    };
+
+                    parkingSpaces.Add(parkingSpace);
+                }
+
+                db.AddRange(parkingSpaces);
+
                 db.SaveChanges();
             }
         }
@@ -116,6 +134,7 @@ namespace Garage_2.Data
             db.ParkedVehicle.RemoveRange(db.ParkedVehicle);
             db.Member.RemoveRange(db.Member);
             db.VehicleType.RemoveRange(db.VehicleType);
+            db.ParkingSpace.RemoveRange(db.ParkingSpace);
         }
     }
 }

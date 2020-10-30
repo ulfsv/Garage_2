@@ -9,14 +9,12 @@ namespace Garage_2.Models
     {
         public int Id { get; set; }
 
-        public ParkedVehicle parkedVehicle { get; set; }
-
+        //public int ParkedVehicle { get; set; }
 
         // Foreign keys
         public int ParkedVehicleId { get; set; }
 
-
         // Navigation properties
-        public int ParkedVehicle { get; set; }
+        public ParkedVehicle ParkedVehicle { get; set; }
     }
 }
