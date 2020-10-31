@@ -23,9 +23,12 @@ Bugglista Garage 2.0
 TODO Garage 3.0
 --------------------------------------------------------
 101. Add town to ZIP?
-102. Checkbox to add new vehicle type
+102.***KLAR*** Checkbox to add new vehicle type
 
 
 Bugglista Garage 3.0
 -------------------------------------------------------
-102.
+102. SQL error when fetching car
+--------
+    SqlException: The DELETE statement conflicted with the REFERENCE constraint "FK_ParkingSpace_ParkedVehicle_parkedVehicleId".
+    The conflict occurred in database "Garage_2Context-9319c7d1-44bc-490d-9d99-f94709cf4b0b", table "dbo.ParkingSpace", column 'parkedVehicleId'.
