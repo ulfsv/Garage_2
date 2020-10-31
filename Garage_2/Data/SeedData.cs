@@ -102,28 +102,6 @@ namespace Garage_2.Data
 
                 db.AddRange(parkedVehicles);
                 
-
-                // ********************** Seeding ParkingSpaces *************************************************
-                List<ParkingSpace> parkingSpaces = new List<ParkingSpace>();
-                int nrOfParkingSpaces = 20;
-
-                for (int i = 0; i < nrOfParkingSpaces; i++)
-                {
-                    ParkingSpace parkingSpace = new ParkingSpace()
-                    {
-                        // Foreign key
-                        ParkedVehicleId = i,
-
-                        // Foreign keys
-                        //ParkedVehicle = fake.Random.ListItem<ParkedVehicle>(parkedVehicles),
-                        ParkedVehicle = parkedVehicles[i]
-                    };
-
-                    parkingSpaces.Add(parkingSpace);
-                }
-
-                db.AddRange(parkingSpaces);
-
                 db.SaveChanges();
             }
         }
@@ -134,7 +112,6 @@ namespace Garage_2.Data
             db.ParkedVehicle.RemoveRange(db.ParkedVehicle);
             db.Member.RemoveRange(db.Member);
             db.VehicleType.RemoveRange(db.VehicleType);
-            db.ParkingSpace.RemoveRange(db.ParkingSpace);
         }
     }
 }
