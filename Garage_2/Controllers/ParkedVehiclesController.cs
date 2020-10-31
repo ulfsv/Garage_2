@@ -87,7 +87,7 @@ namespace Garage_2.Controllers
             }
 
             var model =  db.ParkedVehicle.Include(s => s.Member).Include(s => s.VehicleType).Include(s => s.Member.ParkedVehicles)
-                .Select(p => new DetailsViewModel()
+                .Select(p => new DetailsViewModel
                 {
                     Id = p.Id,
                     VehicleTypeVehicType = p.VehicleType.VehicType,
@@ -408,7 +408,8 @@ namespace Garage_2.Controllers
             {
                 return NotFound();
             }
-
+             ViewBag.amount = 0;
+             
 
             var model = await db.ParkedVehicle.Select(p => new VehicleDetals
             {
@@ -420,9 +421,10 @@ namespace Garage_2.Controllers
                 ParkedDateTime = p.ParkedDateTime,
                 RegisterNumber = p.RegisterNumber,
                 WheelsNumber = p.WheelsNumber
+                
             }).FirstOrDefaultAsync(m => m.Id ==id);
            
-              
+               ViewBag.amount++;
 
 
             return View("VehicleDetails", model);

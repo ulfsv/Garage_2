@@ -93,7 +93,7 @@ namespace Garage_2.Data
                         ParkedDateTime = fake.Date.Recent(),
 
                         // Foreign keys
-                        Member = fake.Random.ListItem<Member>(members), 
+                        Member = fake.Random.ListItem<Member>(members),
                         VehicleType = fake.Random.ListItem<VehicleType>(vehicleTypes)
                     };
 

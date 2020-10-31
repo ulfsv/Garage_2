@@ -74,9 +74,10 @@
         </dd>
 
         @*if Owner has more than one vehicle*@
-        <dt class="col-sm-12">Other @Html.DisplayNameFor(model => model.ParkedVehicles) belong to @Model.MemberFullName</dt>
+        <dt class="col-sm-12"> @Html.DisplayNameFor(model => model.ParkedVehicles) belong to @Model.MemberFullName</dt>
         <dd class="col-sm-12">
             @foreach (var pv in Model.ParkedVehicles)
+
             {
                 <a asp-controller="ParkedVehicles" asp-action="ViewVehicleDetails" asp-route-id="@pv.Id">@pv.RegisterNumber</a><br />
 

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2.Data;
 using Garage_2.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Garage_2.Controllers
 {
@@ -23,18 +24,21 @@ namespace Garage_2.Controllers
         // GET: Members
         public async Task<IActionResult> Index(string inputSSN = null)
 
-        { 
-            var model = db.Member.Include(s => s.ParkedVehicles).Select(p => new MemberViewModel {
+        {
+            var model = db.Member.Include(s => s.ParkedVehicles).Select(p => new MemberViewModel
+            {
                 Id = p.Id,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
-                FullName =$"{p.FirstName}  {p.LastName}",
+                FullName = $"{p.FirstName}  {p.LastName}",
                 Avatar = p.Avatar,
-               
-                SocialSecurityNumber = p.SocialSecurityNumber, Email = p.Email,
-                Phone = p.Phone, Street = p.Street
-            });
+                ParkedVehicles = p.ParkedVehicles,
+                SocialSecurityNumber = p.SocialSecurityNumber,
+                Email = p.Email,
+                Phone = p.Phone,
+                Street = p.Street
 
+            });
             if (inputSSN != null) // sökFunction
             {
                 model = model.Where(p => p.SocialSecurityNumber.Contains(inputSSN));
@@ -194,5 +198,26 @@ namespace Garage_2.Controllers
         {
             return db.Member.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> ParkedViclesCount(int? id) {
+
+            var model = await db.ParkedVehicle.Select(p => new ParkedVehicle { Id = p.Id, MemberId = p.MemberId }).ToListAsync();//.FirstOrDefaultAsync(m => m.Id == id);
+            int c = 0;
+            foreach (var pv in model) {
+                if (id == pv.MemberId)
+                    ViewBag.C ++;
+}
+                
+
+            //var model = await db.ParkedVehicle.Include(s => s.Member).Select(p => new ParkedVehicle
+            //{
+            //    Id = p.Id,
+            //     MemberId = p.MemberId
+            //}).ToListAsync();
+            
+
+            return View(model);
+
+    }
     }
 }
