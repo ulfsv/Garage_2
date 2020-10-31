@@ -285,7 +285,21 @@ namespace Garage_2.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var parkedVehicle = await db.ParkedVehicle.FindAsync(id);
+            ParkingSpace parkingSpaceToNull;
+            
+            parkingSpaceToNull = await db.ParkingSpace.FindAsync(parkedVehicle.Id);
+            
+            // If vehicle is parked
+            if (parkingSpaceToNull != null)
+            {
+                // Set ParkingSpace ParkedVehicleId to null in db
+                parkingSpaceToNull.ParkedVehicleId = null;
+            }
+            await db.SaveChangesAsync();
+
+            // Remove ParkedVehicle from db
             db.ParkedVehicle.Remove(parkedVehicle);
+
             await db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
