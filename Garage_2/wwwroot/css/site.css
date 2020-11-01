@@ -93,13 +93,10 @@ html {
     text-align: center;
 }
 
-body {
-    /* Margin bottom by footer height */
-  /* margin-bottom: 60px;*/ 
-   
+.container.h1-overview h1 {
+    font-family: math;
+    text-align: center;
 }
-
-
 
 hr {
     border-top: 1px solid black;
