@@ -16,9 +16,8 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  
-  border-color: #1861ac;
+    color: #fff;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -92,11 +91,7 @@ html {
 .container h1 {
     font-family: math;
     text-align: center;
-}
-
-.container.h1-overview h1 {
-    font-family: math;
-    text-align: center;
+    margin-bottom: 1em;
 }
 
 hr {
@@ -147,4 +142,8 @@ body {
     background-size: cover;
     color: white;
     font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    color: #000;
 }
