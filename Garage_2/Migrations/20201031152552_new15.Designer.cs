@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage_2.Migrations
 {
     [DbContext(typeof(Garage_2Context))]
-    [Migration("20201030164901_new8")]
-    partial class new8
+    [Migration("20201031152552_new15")]
+    partial class new15
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,23 +101,6 @@ namespace Garage_2.Migrations
                     b.ToTable("ParkedVehicle");
                 });
 
-            modelBuilder.Entity("Garage_2.Models.ParkingSpace", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("parkedVehicleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("parkedVehicleId");
-
-                    b.ToTable("ParkingSpace");
-                });
-
             modelBuilder.Entity("Garage_2.Models.VehicleType", b =>
                 {
                     b.Property<int>("Id")
@@ -146,13 +129,6 @@ namespace Garage_2.Migrations
                         .HasForeignKey("VehicleTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Garage_2.Models.ParkingSpace", b =>
-                {
-                    b.HasOne("Garage_2.Models.ParkedVehicle", "parkedVehicle")
-                        .WithMany()
-                        .HasForeignKey("parkedVehicleId");
                 });
 #pragma warning restore 612, 618
         }

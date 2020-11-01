@@ -23,7 +23,7 @@ Bugglista Garage 2.0
 TODO Garage 3.0
 --------------------------------------------------------
 101. Add town to ZIP?
-102. Checkbox to add new vehicle type
+102.***KLAR*** Checkbox to add new vehicle type
 
 
 Bugglista Garage 3.0
