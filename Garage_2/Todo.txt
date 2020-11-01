@@ -28,4 +28,4 @@ TODO Garage 3.0
 
 Bugglista Garage 3.0
 -------------------------------------------------------
-102.
+102. CalculateTime in ParkedVehicleController doesn't calculate correctly if month or year change during the time the car is parked.
