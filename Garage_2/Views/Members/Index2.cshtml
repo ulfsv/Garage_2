@@ -11,11 +11,9 @@
     <a asp-action="Create" class=" btn bg-white btn-outline-primary btn-lg">Add new Member</a>
 </p>
 
-
-
 <form asp-controller="Members" asp-action="Index" method="get">
     <div class="input-group">
-        <input type="text" name="inputSSN" class="form-control" placeholder="Search on Social securety number" />
+        <input type="text" name="inputSSN" class="form-control" placeholder="Search on Social security number" />
         <div class="input-group-append">
             <input type="submit" class="btn btn-primary" value="Search" />
         </div>
@@ -24,18 +22,9 @@
 
 <br/>
 
-
-
-
-
-
-
 <table class="table">
     <thead>
         <tr>
-
-           
-
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
@@ -48,20 +37,15 @@
              <th> 
                   Number of Vehickles 
             </th>
-
-
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
         <tr>
-
             @*<td>
-            <img src="@item.Avatar" />
-
-        </td>*@
-
+                <img src="@item.Avatar" />
+            </td>*@
 
             <td>
                 @Html.DisplayFor(modelItem => item.FullName)
@@ -79,23 +63,7 @@
                 @Html.DisplayFor(modelItem => item.ParkedVehicles.Count)
 
                 @*<p asp-controller="Members" asp-action="ParkedViclesCount" asp-route-id="@item.Id">@ViewBag.C</p><br />*@
-            
-
-                    
-                
-
-                
-
-
-
             </td>
-
-
-
-
-
-
-
 
             <td>
                 @Html.ActionLink("Edit", "Edit", new { Id = item.Id }) |
