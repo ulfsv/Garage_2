@@ -16,9 +16,8 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  
-  border-color: #1861ac;
+    color: #fff;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -61,7 +60,7 @@ button.accept-policy {
 -------------------------------------------------- */
 html {
   position: relative;
-  //min-height: 100%;
+  min-height: 100%;
 }
 
   
@@ -84,18 +83,15 @@ html {
 }
 
 .container {
+    margin-top: 10px;
     background: rgba(209, 209, 209, 0.6);
-    height: 100% important !;
+    height: 100%;
 }
 
 .container h1 {
     font-family: math;
     text-align: center;
-}
-
-.container.h1-overview h1 {
-    font-family: math;
-    text-align: center;
+    margin-bottom: 1em;
 }
 
 hr {
@@ -146,4 +142,8 @@ body {
     background-size: cover;
     color: white;
     font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    color: #000;
 }
