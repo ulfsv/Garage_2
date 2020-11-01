@@ -79,7 +79,7 @@
             @foreach (var pv in Model.ParkedVehicles)
 
             {
-                <a asp-controller="ParkedVehicles" asp-action="ViewVehicleDetails" asp-route-id="@pv.Id">@pv.RegisterNumber</a><br />
+                <a asp-controller="ParkedVehicles" asp-action="Details" asp-route-id="@pv.Id">@pv.RegisterNumber</a><br />
 
             }
         </dd>
