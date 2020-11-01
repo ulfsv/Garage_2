@@ -6,7 +6,7 @@
 }
 <br />
 
-<h1 class="text-center">Garage overview</h1>
+<h1 class="text-center text-black-50">Garage overview</h1>
 
 <form asp-controller="ParkedVehicles" asp-action="Index" method="get">
     <div class="input-group">
@@ -24,7 +24,7 @@
 
 <br />
 
-<table class="table">
+<table class="table text-black-50 ">
     <thead>
         <tr>
             <th>
@@ -66,7 +66,7 @@
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
 
                     @Html.ActionLink(
-                        /* Link text */ "Fetch vehicle",
+                        /* Link text */ "Unpark",
                         /* Conroller */ "Receipt",
                         /* Id */        new { id = item.Id },
                         /* CSS class*/  new { @class = "link-fetch-vehicle" }
