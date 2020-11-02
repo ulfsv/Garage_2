@@ -330,7 +330,7 @@ namespace Garage_2.Controllers
             double totalTime = 0;
           
                 totalTime = (DateTime.Now - TimeParked).TotalMinutes;
-                totalTime = Math.Ceiling((DateTime.Now - TimeParked).TotalMinutes)/60.0;
+                totalTime = Math.Ceiling(totalTime)/ 60.0;
                 int IntTotalTime = Convert.ToInt32(totalTime);
 
             return IntTotalTime;
