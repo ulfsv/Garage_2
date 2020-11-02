@@ -20,5 +20,7 @@ namespace Garage_2.Models.ReceiptViewModel {
         public int Cost { get; set; }
 
         public int TotalTimeParked { get; set; }
+
+        public string name { get; set; }
     }
 }

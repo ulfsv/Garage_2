@@ -5,6 +5,7 @@ using Garage_2.Models.ReceiptViewModel;
 using Garage_2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,8 @@ namespace Garage_2.Controllers
                 ViewData["message"] = "Sorry, nothing found!" + "<br />" + "Showing all vehicles ";
                 return View("Index2", await model.ToListAsync());
             }
-            else
+            else 
+             
             {
                 ViewData["message"] = "";
                 return View("Index2", await model.ToListAsync());
@@ -295,7 +297,7 @@ namespace Garage_2.Controllers
             return db.ParkedVehicle.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Receipt(int? id)
+        public async Task<IActionResult> Receipt(int? id, string name)
         {
             Receipt receipt = null;
 
@@ -318,9 +320,12 @@ namespace Garage_2.Controllers
                 receipt.PricePerHour = 100;
                 receipt.TotalTimeParked = CalculateTime(parkedVehicle.ParkedDateTime);
                 receipt.Cost = CalculatePrice(receipt.TotalTimeParked, receipt.PricePerHour);
+                receipt.name = name;
             }
 
             await DeleteConfirmed((int)id);
+            
+            //ViewBag[]
             return View(receipt);
         }
 
