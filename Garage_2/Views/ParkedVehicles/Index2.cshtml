@@ -16,10 +16,12 @@
         </div>
     </div>
 </form>
+<br>
 
-@if (ViewData["message"].ToString() != "")
+@if (ViewData["message"].ToString() != "" || ViewData["message"]==null)
 {
-    <div id="alert-nothing-found" class="alert alert-warning" role="alert">@Html.Raw(ViewData["message"])</div>
+    @*<div id="alert-nothing-found" class="alert alert-warning" role="alert">*@
+    <div class="text-danger">@Html.Raw(ViewData["message"])</div>
 }
 
 <br />
@@ -64,12 +66,13 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-
-                    @Html.ActionLink(
+                    @{var Name = item.MemberFullName;} 
+                    @Html.ActionLink(  
                         /* Link text */ "Unpark",
                         /* Conroller */ "Receipt",
-                        /* Id */        new { id = item.Id },
+                        /* Id */        new { id = item.Id, name = Name },
                         /* CSS class*/  new { @class = "link-fetch-vehicle" }
+                                        
 
                          )
                 </td>
