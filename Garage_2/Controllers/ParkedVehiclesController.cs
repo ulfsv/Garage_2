@@ -332,11 +332,13 @@ namespace Garage_2.Controllers
         //******************************************************** CalculateTime ****************************************
         public int CalculateTime( DateTime TimeParked)
         {
-            int minsFromDays = (DateTime.Now.Day - TimeParked.Day) * 24 * 60;
-            int minsFromhours = (DateTime.Now.Hour - TimeParked.Hour) * 60;
-            int mins = DateTime.Now.Minute - TimeParked.Minute;
-            int totalTime = (int)Math.Ceiling((minsFromDays + minsFromhours + mins) / 60.0);
-            return totalTime;
+            double totalTime = 0;
+          
+                totalTime = (DateTime.Now - TimeParked).TotalMinutes;
+                totalTime = Math.Ceiling((DateTime.Now - TimeParked).TotalMinutes)/60.0;
+                int IntTotalTime = Convert.ToInt32(totalTime);
+
+            return IntTotalTime;
         }
 
         //**************************************************** CalculatePrice *****************************************
