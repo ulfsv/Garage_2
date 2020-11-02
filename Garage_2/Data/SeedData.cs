@@ -1,4 +1,5 @@
 ﻿using Bogus;
+
 using Garage_2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,8 @@ using System.Linq;
 
 namespace Garage_2.Data
 {
+    // Seeding to tables Member, VehicleType and ParkedVehicle
+    // ParkedVehicle must be last
     public static class SeedData
     {
         public static void Initialize(IServiceProvider services)
@@ -18,38 +21,16 @@ namespace Garage_2.Data
             {
                 if (db.ParkedVehicle.Any())
                 {
-                    db.ParkedVehicle.RemoveRange(db.ParkedVehicle);
-                    return;
+                    Removeposts(db);
+                    //return;
                 }
 
                 var fake = new Faker("sv");
 
-                // ####  seedning av Garage, lägg in garageplatser 1-20 som stoppas in på rad 117 i ParkedVehicle ungefär som seed Member fast utan fake
-                List<Garage> parkingspaces = new List<Garage>();
-
-                for (int i = 0; i < 20; i++)
-                {
-                    //var fName = fake.Name.FirstName();
-                    //var objGarage = new Garage { Id = i, ParkingSpaceNum = i };
-
-                    Garage garage = new Garage()
-                    {
-                        ParkingSpaceNum = i
-                        //ParkingSpaceNum = { fake.IndexFaker.Int(1, 20) }
-                        //ParkingSpaceNum = string.Join("", fake.IndexFaker.int(20, 1, 20)
-                        //ParkingSpaceNum = string.Join("", fake.R.Digits(10, 1, 9))
-                        };
-
-                    parkingspaces.Add(garage);
-                }
-
-                db.AddRange(parkingspaces);
-
-                //********************** Seeding members **********************************************
-
-                List<Member> members = new List<Member>();
+               // ********************** Seeding members ************************************************
+                List<Member>  members = new List<Member>();
                 
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 25; i++)
                 {
                     var fName = fake.Name.FirstName();
                     var lName = fake.Name.LastName();
@@ -93,7 +74,7 @@ namespace Garage_2.Data
                 db.AddRange(vehicleTypes);
 
                 //*************************** Seeding ParkedVehicle *************************************
-                var parkedVehicles = new List<ParkedVehicle>();
+                List<ParkedVehicle> parkedVehicles = new List<ParkedVehicle>();
 
                 string regNum;
 
@@ -112,17 +93,25 @@ namespace Garage_2.Data
                         ParkedDateTime = fake.Date.Recent(),
 
                         // Foreign keys
-                        Member = fake.Random.ListItem<Member>(members), 
-                        VehicleType = fake.Random.ListItem<VehicleType>(vehicleTypes),
-                        Garage = ListItem<Garage>(parkingspaces)   // ##### lite oklart hur man får in värdena här?
+                        Member = fake.Random.ListItem<Member>(members),
+                        VehicleType = fake.Random.ListItem<VehicleType>(vehicleTypes)
                     };
 
                     parkedVehicles.Add(parkedVehicle);
                 }
 
                 db.AddRange(parkedVehicles);
+                
                 db.SaveChanges();
             }
+        }
+
+
+        private static void Removeposts(Garage_2Context db)
+        {
+            db.ParkedVehicle.RemoveRange(db.ParkedVehicle);
+            db.Member.RemoveRange(db.Member);
+            db.VehicleType.RemoveRange(db.VehicleType);
         }
     }
 }

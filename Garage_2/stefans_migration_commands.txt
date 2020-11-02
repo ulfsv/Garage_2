@@ -1,0 +1,7 @@
+﻿dotnet ef migrations add Init
+
+dotnet ef database update
+
+https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+
+https://www.microsoft.com/sv-se/software-download/windows10

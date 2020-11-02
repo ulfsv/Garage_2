@@ -13,6 +13,7 @@ else {
 //    btnParkVehicle.addEventListener("click", onBtnParkVehicleClick);
 //}
 
+
 if (document.querySelector("#btn-edit-vehicle")) {
     var btnEditVehicle = document.querySelector("#btn-edit-vehicle");
     btnEditVehicle.addEventListener("click", onBtnEditVehicleClick);
@@ -28,6 +29,24 @@ if (document.querySelector(".link-fetch-vehicle")) {
         fetchLinkes[i].addEventListener("click", showConfirmation);
     }
 }
+
+// Add new vehicle type
+$("#add-vehic-type").click(function () {
+    if ($("#add-vehic-type").is(":checked") == true) {
+        $('#existing-vehicle-types-dropdown-select').fadeOut("slow");
+        $('#existing-vehicle-types-label').fadeOut("slow", function () {
+            $('#add-new-vehic-type-input').fadeIn("slow");
+            $('#add-new-vehic-type-input-label').fadeIn("slow");
+        });
+
+    } else {
+        $('#add-new-vehic-type-input').fadeOut("slow");
+        $('#add-new-vehic-type-input-label').fadeOut("slow", function () {
+            $('#existing-vehicle-types-dropdown-select').fadeIn("slow");
+            $('#existing-vehicle-types-label').fadeIn("slow");
+        });
+    }
+});
 
 /************************ onBtnParkVehicleClick ***********************************/
 //function onBtnParkVehicleClick() {
